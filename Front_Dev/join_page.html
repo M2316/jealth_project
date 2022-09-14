@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+    <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>   
+
+<style>
+
+/* 부트스트랩 css 수정 */
+    .row > *{
+        padding:0px;
+    }
+    .jealth_logo{
+        height: 13vh;
+    }
+    .join-header{
+        height: 4vh;
+        text-align: center;
+        border-top: 1px solid red;
+        border-bottom: 1px solid red;
+        padding: 5px 0px;
+        clear:both;
+    }
+    .join-header span{
+        font-weight: 600;
+        padding-right: 35px;
+    }
+    .join-header a{
+        float: left;
+        padding-left: 10px;
+    }
+    .join-wrap{
+        padding: 30px;
+        border: 1px solid red;
+        border-radius: 15px 15px 0px 0px;
+        margin: 30px 20px 0px;
+        height: 72vh;
+        overflow-y: auto;
+        
+    }
+    .input-wrap{
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .join-btn-container > .row{
+        padding: 0px 20px;
+    }
+    .join-btn{
+        margin: 0px auto;
+        border: 1px solid red;
+        border-radius: 0px 0px 15px 15px;
+    }
+</style>
+
+    <title>회원가입</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row jealth_logo">
+            <div class="col-sm-12"><img src="imgs/jealth_logo.png" alt="" style="width:100%; padding:30px;"></div>
+        </div>
+        <div class="row join-header">
+            <div class="col-12">
+                <a href="#"><img src="imgs/back-left-arrow-symbol_icon-icons.com_74324.png" alt="" style="width: 25px;"></a>
+                <span>회원가입</span>
+            </div>
+        </div>
+        <div class="join-wrap">
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">아이디</div>
+                </div>
+                <div class="row">
+                    <div class="col-8"><input class="form-control" type="text" placeholder="ID"></div>
+                    <button type="button" class="btn btn-secondary col-4">중복체크</button>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">비밀번호</div>
+                </div>
+                <div class="row">
+                    <div class="col-12"><input class="form-control" type="password" placeholder="Password"></div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">비밀번호 확인</div>
+                </div>
+                <div class="row">
+                    <div class="col-12"><input class="form-control" type="password" placeholder="Password"></div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">닉네임</div>
+                </div>
+                <div class="row">
+                    <div class="col-12"><input class="form-control" type="text" placeholder="Nick Name"></div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">성별</div>
+                </div>
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="input-group">
+                        <div class="input-group-text col-12">
+                          <div class="col-3">
+                              <input class="form-check-input mt-1" type="radio" value="" name="user_sex">
+                              <span>남자</span>
+                          </div>
+                          <div class="col-3">
+                              <input class="form-check-input mt-1" type="radio" value="" name="user_sex">
+                              <span>여자</span>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">연령대</div>
+                </div>
+                <div class="row">
+                    <div class="col-12"><input class="form-control" type="text" placeholder="Age" disabled readonly></div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">생년월일</div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="tui-datepicker-input" style="width: 100%; height: 38px; border-radius: 0.375rem;">
+                            <input type="text" id="datepicker-input" aria-label="Date-Time">
+                            <span class="tui-ico-date"></span>
+                        </div>
+                        <div id="wrapper" style="margin-top: -1px;"></div>
+                     </div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">몸무게</div>
+                </div>
+                <div class="row">
+                    <div class="col-12"><input class="form-control" type="text" placeholder="What is your height?"></div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">키</div>
+                </div>
+                <div class="row">
+                    <div class="col-12"><input class="form-control" type="text" placeholder="How tall are you?"></div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">스쿼트 PR</div>
+                </div>
+                <div class="row">
+                    <div class="col-12"><input class="form-control" type="text" placeholder="Squat => Kg"></div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">데드리프트 PR</div>
+                </div>
+                <div class="row">
+                    <div class="col-12"><input class="form-control" type="text" placeholder="Deadlift => Kg"></div>
+                </div>
+            </div>
+            <div class="container input-wrap">
+                <div class="row">
+                    <div class="col-12">벤치프레스 PR</div>
+                </div>
+                <div class="row">
+                    <div class="col-12"><input class="form-control" type="text" placeholder="Bench Press => Kg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container join-btn-container">
+            <div class="row">
+                <div class="col-12">
+                    <button class="join-btn form-control">회원가입</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    var datepicker = new tui.DatePicker('#wrapper', {
+            date: new Date(),
+            input: {
+                element: '#datepicker-input',
+                format: 'yyyy년 MM월 dd일'
+            }
+        });
+</script>
+</html>
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHDP Full Calendar</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+    </style>
+</head>
+<body oncontextmenu="return false" onselectstart="return false">
+    <div class="page_nav">
+        <!-- header Include로 뺄 예정 -->
+        <div class="header_box clearfix" id="header_box">
+            <div class="header_item"><p name="menu1">운동</p></div>
+            <div class="header_item"><p name="menu2">식단</p></div>
+            <div class="header_item"><p name="menu3">MyPage</p></div>
+            <div class="header_item"><p name="menu4">LogOut</p></div>
+        </div>
+        <!-- header Include로 뺄 예정 -->
+        <!-- calendar Include로 뺄 예정 -->
+        <div class="calendar_wrap">
+            <div class="header">
+                <div class="year-month draggableText"></div>
+                <div class="nav">
+                    <button class="nav-btn go-prev" onclick="prevMonth()"><img src="imgs/left-chevron.png" alt=""></button>
+                    <button class="nav-btn go-today" onclick="goToday()">Today</button>
+                    <button class="nav-btn go-next" onclick="nextMonth()"><img src="imgs/right-chevron.png" alt=""></button>
+                </div>
+            </div>
+            <div class="main">
+                <div class="days">
+                    <div class="day">일</div>
+                    <div class="day">월</div>
+                    <div class="day">화</div>
+                    <div class="day">수</div>
+                    <div class="day">목</div>
+                    <div class="day">금</div>
+                    <div class="day">토</div>
+                </div>
+                <div class="dates"></div>
+            </div>
+        </div>
+        <script src="js/Calendar_Create.js"></script>
+        <!-- calendar Include로 뺄 예정 -->
+    </div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        input{
+            border: 1px solid black;
+        }
+        .clearfix::after{
+            content: '';
+            clear: both;
+            display: block;
+        }
+/* login page logo */
+        .loginlogo{
+            margin: 130px 30px;
+        }
+        .loginlogo img{
+            margin: 0 auto;
+        }
+/* input_box 위 글[login_info] */
+
+    .login_info div{
+        text-align: center;
+        line-height: 1rem;
+    }
+
+    .login_header1{
+        color: var(--font_color1);
+        font-size: 1.1rem;
+        font-weight: 900;
+        margin: 5px;
+    }
+    .login_header2{
+        font-size: 0.9rem;
+        font-weight: 900;
+        color: var(--font_color1);
+    }
+    .login_header2 strong{
+        color: black;
+        font-size: 1rem;
+    }
+/* login_input_box */
+        .login_input_box{
+            width: 280px;
+            margin: 30px auto;
+        }
+        .checkgroup{
+            margin-bottom: 5px;
+        }
+        .login_save{
+            width: 100px;
+            float: left;
+        }
+        
+        .login_save input[type=checkbox]{
+            width: 18px;
+            height: 18px;
+            float: left;
+            line-height: 18px;
+        }
+        .login_save p{
+            font-size: 12px;
+        }
+        .user_input{
+            display: flex;
+
+        }
+        .logininfo_input input{
+            height: 30px;
+            width: 200px;
+            padding: 0 15px;
+            border-color: var(--font_color1);
+        }
+        .login_btn{
+            border: 1px solid black;
+            width: 80px;
+            height: 60px;
+            text-align: center;
+        }
+        .login_btn a{
+            line-height: 60px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            height: 60px;
+        }
+        
+
+        /* 다른 방법으로 로그인 */
+        .other_loginbox{
+            margin: 10px;
+            text-align: center;
+        }
+        .other_lognbox_header p{
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--font_color1);
+            text-align: center;
+        }
+        .other_login_list{
+            width: 202px;
+            margin: 0 auto;
+        }
+        .other_login{
+            float: left;
+            margin: 2px;
+            padding: 0 5px;
+            border: 1px solid var(--font_color1);
+            font-weight: 900;
+        }
+        .other_loginbox{
+            margin: 0 auto;
+            padding: 3px;
+            width: 209px;
+            border: 1px solid var(--font_color1);
+        }
+
+        .kakao{
+            background-color: #ffdc00;
+        }
+        .kakao p{
+            font-weight: 600;
+        }
+        .naver{
+            background-color: #19ce60;
+        }
+        .naver p{
+            color: #fff;
+        }
+        .google{
+            width: 65px;
+            height: 26px;
+            padding-left:8px ;
+            
+        }
+        .google img{
+            padding-top: 5px;
+            line-height: 26px;
+            height: 20px;
+            
+        }
+/* 회원가입 */
+        .create_user{
+            font-size: 1.8rem;
+            font-weight: 900;
+            color:var(--font_color1);
+            text-align: center;
+            margin: 40px;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="loginlogo"><img src="imgs/jealth_logo.png" alt="logo"></div>
+    <div class="login_box">
+        <div class="login_info">
+            <div class="login_header1">로그인이 필요한 서비스입니다.</div>
+            <div class="login_header2"><strong>JEALTH</strong> 회원이 아니면, 지금 회원가입을 해주세요.</div>
+        </div>
+        <div class="login_input_box">
+            <div class="checkgroup clearfix">
+                <div class="login_save clearfix">
+                    <input type="checkbox">
+                    <p>로그인 유지</p>
+                </div>
+                <div class="login_save clearfix">
+                    <input type="checkbox">
+                    <p>아이디 유지</p>
+                </div>
+            </div>
+            <div class="user_input">
+                <div>
+                    <div class="logininfo_input">
+                        <input type="text">
+                    </div>
+                    <div class="logininfo_input">
+                        <input type="password">
+                    </div>
+                </div>
+                <div class="login_btn">
+                    <a href="#">로그인</a>
+                </div>
+            </div>
+        </div>
+        <div class="other_lognbox_header">
+            <p>다른 방법으로 로그인</p>
+        </div>
+        <div class="other_loginbox">
+            <div class="other_login_list clearfix" style="margin: 0 auto;">
+                <div class="other_login kakao">
+                    <p class="kakao_p">KaKao</p>
+                </div>
+                <div class="other_login naver">
+                    <p class="naver_p">NAVER</p>
+                </div>
+                <div class="other_login google">
+                    <img src="imgs/google.png" alt="google_logo">
+                </div>
+            </div>
+        </div>
+        <div class="create_user">
+            <a href="">회원가입</a>
+        </div>
+    </div>
+</body>
+</html>
