@@ -15,30 +15,30 @@ import lombok.ToString;
 @NoArgsConstructor
 public class UserVO {
 	/*
-	CREATE TABLE users(
-    user_id VARCHAR2(200) PRIMARY KEY,
-    user_pw VARCHAR2(200) NOT NULL,
-    user_name VARCHAR2(50) NOT NULL,
-    phone1 VARCHAR2(50),
-    phone2 VARCHAR2(50),
-    email1 VARCHAR(200),
-    email2 VARCHAR(200),
-    address1 VARCHAR(200),
-    address2 VARCHAR(200),
-    address_zip VARCHAR(200),
-    join_date DATE DEFAULT sysdate
+    user_id VARCHAR2(15 CHAR) NOT NULL,
+    user_pw VARCHAR2(50) NOT NULL,
+    nickname VARCHAR2(15 CHAR) NOT NULL,
+    user_sex VARCHAR2(10),
+    user_age NUMBER(2),
+    birthday DATE,
+    weight NUMBER(3,2),
+    stature NUMBER(3,2),
+    squat_pr NUMBER(3),
+    deadlift_pr NUMBER(3),
+    benchpress_pr NUMBER(3),
+    user_create_date DATE DEFAULT SYSDATE
     );
 	*/
 	private String userId;
 	private String userPw;
-	private String userName;
-	private String phone1;
-	private String phone2;// String으로 받아왔어야 했는데... table작성시 NUMBER 타입으로 해버렸다... String으로 바꿔 줬다...
-	private String email1;
-	private String email2;
-	private String address1;
-	private String address2;
-	private String addressZip;
-	private Timestamp joinDate;
-	
+	private String nickname;
+	private String userSex;
+	private int userAge;
+	private int birthday;
+	private double weight;
+	private double stature;
+	private int squatPr;
+	private int deadliftPr; 
+	private int benchpressPr;
+	private Timestamp userCreateDate;
 }

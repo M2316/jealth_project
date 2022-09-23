@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.ddns.jealth.mapper.IUserMapper">
+	<resultMap type="user" id="userMap">
+		<id property="userId" column="user_id"/>
+		<result property="userPw" column="user_pw"/>
+		<result property="userSex" column="user_sex"/>
+		<result property="userAge" column="user_age"/>
+		<result property="squatPr" column="squat_pr"/>
+		<result property="deadliftPr" column="deadlift_pr"/>
+		<result property="benchpressPr" column="benchpress_pr"/>
+		<result property="userCreateDate" column="user_create_date"/>		
+	</resultMap>
+<!-- 	
+	private String userId;
+	private String userPw;
+	private String nickname;
+	private String userSex;
+	private int userAge;
+	private int birthday;
+	private double weight;
+	private double stature;
+	private double squatPr;
+	private double deadliftPr; 
+	private double benchpressPr;
+	private Timestamp userCreateDate;
+	 -->
+	<insert id="userInsert">
+		INSERT INTO user_info VALUES(#{userId},#{userPw},#{nickname},#{userSex},#{userAge},#{birthday},#{weight},#{stature},#{squatPr},#{deadliftPr},#{benchpressPr},sysdate)
+	</insert>
+	
+	<select id="userCheck" resultMap="userMap">
+		SELECT * FROM user_info WHERE user_id=#{id} AND user_pw=#{pw}
+	</select>
+	
+	<select id="idOverLapCheck" resultType="int">
+		SELECT COUNT(*) FROM user_info WHERE user_id = #{userId}
+	</select>
+</mapper>

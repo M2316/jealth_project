@@ -33,7 +33,8 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+//		사용자가 로그인 되어있지 않다면 /user/userLogin 으로 가게 됨 [LoginFilter에서 확인이 가능]
+		return "redirect:/app/main";
 	}
 	
 }

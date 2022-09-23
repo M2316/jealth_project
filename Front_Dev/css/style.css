@@ -136,6 +136,8 @@
 
   .header_box{
     display: flex;
+    height: 3vh;
+    line-height: 3vh;
   }
   .header_item{
     margin: 0 auto;
@@ -158,4 +160,78 @@
 
 .date_inner span, .day{
   font-weight: 600;
+}
+
+
+
+.jealth_logo{
+  height: 19vh;
+  line-height: 19vh;
+}
+.jealth_logo > .col-12{
+  height: 100%;
+  padding: 0px 10px;
+}
+.join-header{
+  height: 4vh;
+  text-align: center;
+  border-top: 1px solid var(--font_color1);
+  border-bottom: 1px solid var(--font_color1);
+  padding: 5px 0px;
+  clear:both;
+}
+.join-header span{
+  font-weight: 600;
+  padding-right: 35px;
+}
+.join-header a{
+  float: left;
+  padding-left: 10px;
+}
+.join-wrap{
+  padding: 1px 10px;
+  border: 1px solid var(--font_color1);
+  border-radius: 15px 15px 0px 0px;
+  margin: 4vh 20px 0px;
+  height: 64vh;
+}
+.item-list{
+  padding: 20px 30px;
+  height: 100%;
+  overflow-y: auto;
+}
+.input-wrap{
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+.join-btn-container > .row{
+  padding: 0px 20px;
+  height: 5vh;
+}
+.join-btn{
+  margin: 0px auto 4vh;
+  border: 1px solid var(--font_color1);
+  border-radius: 0px 0px 15px 15px;
+  font-weight: 900;
+  width: 100%;
+}
+.join-btn:hover{
+  cursor: pointer;
+}
+
+.center-btn-box{
+  border-bottom: 2px solid var(--font_color1);
+}
+.workout-function-btn-wrap{
+  text-align: center;
+  padding: 7px 10px 5px 0px;
+}
+
+.function-btn{
+  border:1px solid var(--font_color1);
+  width: 100%;
+  font-weight: 900;
+  color: var(--font_color1);
+  text-align: center;
+  background-color: #FFFFFF;
 }

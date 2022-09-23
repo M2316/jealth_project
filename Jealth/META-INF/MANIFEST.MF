@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Jealth
+Bundle-SymbolicName: Jealth
+Bundle-Version: 1.0.0.qualifier
+Export-Package: net.ddns.jealth,
+ net.ddns.jealth.interceptor,
+ net.ddns.jealth.mapper,
+ net.ddns.jealth.model,
+ net.ddns.jealth.user.controller,
+ net.ddns.jealth.user.service,
+ net.ddns.jealth.util.filter,
+ net.ddns.jealth.workout
