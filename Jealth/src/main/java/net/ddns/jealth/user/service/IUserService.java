@@ -12,4 +12,10 @@ public interface IUserService {
 	//유저 아이디 중복 체크
 	String idOverlapCheck(String userId);
 	
+	//JsessionID, cookiemaxage 업데이트
+	void autoLoginInfoUpdate(String userId, String jSessionId, int cookieAge);
+
+	//Jsession ID로 user조회하여 session을 만들어준다 [autoLogin]
+	UserVO autoLoginCheck(String jSessionId);
+	
 }

@@ -27,6 +27,8 @@ public class UserVO {
     deadlift_pr NUMBER(3),
     benchpress_pr NUMBER(3),
     user_create_date DATE DEFAULT SYSDATE
+    cookie_age NUMBER(10),
+    jsession_id VARCHAR2(50)
     );
 	*/
 	private String userId;
@@ -41,4 +43,6 @@ public class UserVO {
 	private int deadliftPr; 
 	private int benchpressPr;
 	private Timestamp userCreateDate;
+	private int cookieAge;
+	private String jSessionId;
 }

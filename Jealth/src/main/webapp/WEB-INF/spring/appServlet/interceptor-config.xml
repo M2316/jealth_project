@@ -8,22 +8,15 @@
 	<!-- namespaces 탭에서 mvc 기능 추가 -->
 	<!-- web.xml에 초기 설정 파일로 이 파일을 추가 -->
 	
-	<bean id="userLoginSuccessHandler" class="net.ddns.jealth.interceptor.UserLoginSuccessHandler" />
+	<bean id="AutoLoginUserHandler" class="net.ddns.jealth.util.interceptor.AutoLoginUserHandler" />
 	
-<!--
+
 	<mvc:interceptors>
- 		
-		로그인 여부 확인
 		<mvc:interceptor>
-			<mvc:mapping path="/"/>
-			<mvc:mapping path="/workout/main"/>
-			
-			<ref bean="userLoginSuccessHandler" />
+			<mvc:mapping path="/*"/>
+			<ref bean="AutoLoginUserHandler" />
 		</mvc:interceptor>
-		
-		 
 	</mvc:interceptors>
-		-->
 		
 
 

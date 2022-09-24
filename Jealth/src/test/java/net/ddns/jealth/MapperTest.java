@@ -3,6 +3,8 @@ package net.ddns.jealth;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -16,12 +18,14 @@ public class MapperTest {
 	@Autowired
 	private IUserMapper userMapper;
 	
+	private PasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	@Test
 	public void inserTest() {
 		UserVO vo = new UserVO();
 		for(int i=1; i<=30; i++) {
-			vo.setUserId("tester"+i);
-			vo.setUserPw("tester"+i);
+			vo.setUserId("test"+i);
+			vo.setUserPw(encoder.encode("qwerqwer"+i));
 			vo.setNickname("tester_nick"+i);
 			vo.setUserSex(i%2 == 0 ? "M":"W");
 			vo.setUserAge(27);
@@ -38,7 +42,7 @@ public class MapperTest {
 	@Test
 	public void userSelectTest() {
 		
-		UserVO vo = userMapper.userCheck("tester1", "tester1");
+		UserVO vo = userMapper.userCheck("tester1");
 		
 		
 		System.out.println(vo);

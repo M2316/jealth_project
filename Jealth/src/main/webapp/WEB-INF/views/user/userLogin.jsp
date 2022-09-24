@@ -168,18 +168,18 @@
             <div class="login_header2"><strong>JEALTH</strong> 회원이 아니면, 지금 회원가입을 해주세요.</div>
         </div>
         <div class="login_input_box">
-            <div class="checkgroup clearfix">
-                <div class="login_save clearfix">
-                    <input type="checkbox">
-                    <p>로그인 유지</p>
-                </div>
-                <div class="login_save clearfix">
-                    <input type="checkbox">
-                    <p>아이디 유지</p>
-                </div>
-            </div>
-            <div class="user_input">
-            	<form name="loginForm" action="${pageContext.request.contextPath}/user/loginTry" method="post">
+           	<form name="loginForm" action="${pageContext.request.contextPath}/user/loginTry" method="post">
+	            <div class="checkgroup clearfix">
+	                <div class="login_save clearfix">
+	                    <input type="checkbox" name="loginCookieFlag">
+	                    <p>로그인 유지</p>
+	                </div>
+	                <div class="login_save clearfix">
+	                    <input type="checkbox" name="idCookieFlag">
+	                    <p>아이디 유지</p>
+	                </div>
+	            </div>
+	            <div class="user_input">
 	                <div>
 	                    <div class="logininfo_input">
 	                        <input type="text" name="userId">
@@ -188,11 +188,11 @@
 	                        <input type="password" name="userPw">
 	                    </div>
 	                </div>
-            	</form>
 	                <div class="login_btn">
 	                    <a id="loginBtn" href="javascript:void(0)" onClick="javascript:loginTry()">로그인</a>
 	                </div>
-            </div>
+	            </div>
+           	</form>
         </div>
         <div class="other_lognbox_header">
             <p>다른 방법으로 로그인</p>
@@ -223,7 +223,7 @@
 	if (msg === 'loginFail'){
 		console.log('로그인 실패');
 		alert('아이디 혹은 비밀번호가 다릅니다.');
-		location.href("/app/main");
+		location.href = "/user/userLogin";
 	}else if(msg === 'JoinSuccess'){
 		alert('로그인하여 Jealth에서 활동을 기록해 보세요~!');
 	}else if(msg === 'JoinFail'){
@@ -231,7 +231,16 @@
 	}
 	
 	function loginTry(){
-		loginForm.submit();
+		let inputId = document.querySelector('input[name="userId"]').value;
+		let inputPw = document.querySelector('input[name="userPw"]').value;
+		if(inputId !== "" && inputPw !== ""){
+			loginForm.submit();
+			
+		}else{
+			alert('아이디 혹은 비밀번호를 입력해 주세요.');
+		}
+		
+		
 	}
 	
 </script>

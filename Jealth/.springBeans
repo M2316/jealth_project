@@ -8,9 +8,10 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>src/main/webapp/WEB-INF/spring/root-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/interceptor-config.xml</config>
 	</configs>
 	<autoconfigs>
-		<config>src/main/webapp/WEB-INF/spring/interceptor-config.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/security-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
 	</autoconfigs>
 	<configSets>

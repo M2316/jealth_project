@@ -12,8 +12,11 @@
 		<result property="squatPr" column="squat_pr"/>
 		<result property="deadliftPr" column="deadlift_pr"/>
 		<result property="benchpressPr" column="benchpress_pr"/>
-		<result property="userCreateDate" column="user_create_date"/>		
+		<result property="userCreateDate" column="user_create_date"/>
+		<result property="cookieAge" column="cookir_age"/>		
+		<result property="jSessionId" column="jsession_id"/>				
 	</resultMap>
+	
 <!-- 	
 	private String userId;
 	private String userPw;
@@ -29,14 +32,18 @@
 	private Timestamp userCreateDate;
 	 -->
 	<insert id="userInsert">
-		INSERT INTO user_info VALUES(#{userId},#{userPw},#{nickname},#{userSex},#{userAge},#{birthday},#{weight},#{stature},#{squatPr},#{deadliftPr},#{benchpressPr},sysdate)
+		INSERT INTO user_info VALUES(#{userId},#{userPw},#{nickname},#{userSex},#{userAge},#{birthday},#{weight},#{stature},#{squatPr},#{deadliftPr},#{benchpressPr},sysdate,null,null)
 	</insert>
 	
 	<select id="userCheck" resultMap="userMap">
-		SELECT * FROM user_info WHERE user_id=#{id} AND user_pw=#{pw}
+		SELECT * FROM user_info WHERE user_id=#{id}
 	</select>
 	
 	<select id="idOverLapCheck" resultType="int">
 		SELECT COUNT(*) FROM user_info WHERE user_id = #{userId}
 	</select>
+	
+	<update id="autoLoginInfoUpdate">
+		UPDATE user_info SET cookie_age = #{cookieAge}, jsession_id = #{jSessionId} WHERE user_id = #{userId}
+	</update>
 </mapper>

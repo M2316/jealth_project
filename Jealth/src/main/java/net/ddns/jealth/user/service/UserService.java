@@ -13,17 +13,32 @@ public class UserService implements IUserService {
 	
 	@Autowired
 	private IUserMapper mapper;
-
+	
+	private PasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	@Override
 	public boolean userInsert(UserVO user) {
+		
+		user.setUserPw(encoder.encode(user.getUserPw()));
 		return mapper.userInsert(user);
 	}
 
 	@Override
 	public UserVO userCheck(String userId, String userPw) {
 		System.out.println("userservice value : id =" + userId + " pw = " + userPw);
-		UserVO vo = mapper.userCheck(userId, userPw);
-		return vo;
+		UserVO vo = mapper.userCheck(userId);
+		try {
+			boolean matchesPw = encoder.matches(userPw, vo.getUserPw());		
+			System.out.println(matchesPw);
+		if(matchesPw) {
+			return vo;
+		}else {
+			return null;
+		}
+		
+		} catch (Exception e) {
+			return null;
+		}
 		
 	}
 
@@ -36,5 +51,17 @@ public class UserService implements IUserService {
 			return "idOverlap";
 		}
 	}
-
+	
+	
+	@Override
+	public void autoLoginInfoUpdate(String userId,String jSessionId,int cookieAge){
+		System.out.println("service : " + cookieAge);
+		mapper.autoLoginInfoUpdate(userId, jSessionId, cookieAge);
+	}
+	
+	@Override
+	public UserVO autoLoginCheck(String jSessionId) {
+		UserVO user = mapper.autoLoginCheck(jSessionId);
+		return user;
+	}
 }
