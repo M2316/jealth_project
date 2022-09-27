@@ -15,6 +15,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class UserVO {
 	/*
+CREATE TABLE user_info (
     user_id VARCHAR2(15 CHAR) NOT NULL,
     user_pw VARCHAR2(50) NOT NULL,
     nickname VARCHAR2(15 CHAR) NOT NULL,
@@ -26,7 +27,7 @@ public class UserVO {
     squat_pr NUMBER(3),
     deadlift_pr NUMBER(3),
     benchpress_pr NUMBER(3),
-    user_create_date DATE DEFAULT SYSDATE
+    user_create_date DATE DEFAULT SYSDATE,
     cookie_age NUMBER(10),
     jsession_id VARCHAR2(50)
     );

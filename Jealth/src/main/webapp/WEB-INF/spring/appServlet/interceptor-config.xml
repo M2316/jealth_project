@@ -13,7 +13,7 @@
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/*"/>
+			<mvc:mapping path="/user/userLogin"/>
 			<ref bean="AutoLoginUserHandler" />
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -35,7 +35,12 @@ public class UserController {
 	private IUserService service;
 	
 	@GetMapping("/userLogin")	//로그인페이지 요청
-	public void userLogin() {}
+	public void userLogin(HttpServletRequest request) {
+//		Cookie[] Cookies = request.getCookies();
+//		for(Cookie c : Cookies) {
+//			System.out.println("쿠키 : " + c.getName());
+//		}
+	}
 	
 	//로그인 시도
 	@PostMapping("/loginTry")
@@ -43,9 +48,6 @@ public class UserController {
 							@CookieValue("JSESSIONID") String jSessionId , HttpServletRequest request, HttpServletResponse response, Model model) {
 		UserVO user = service.userCheck(userId, userPw);
 		if(user != null) {
-			//쿠키에 로그인 정보를 담아주기 위해 
-			boolean loginFlag = true; 
-			
 			//로그인 세션 생성
 			HttpSession session = request.getSession();
 			session.setAttribute("userInfo", user);
@@ -55,14 +57,26 @@ public class UserController {
 				Cookie idCook = new Cookie("saveIdCookie", userId);
 				idCook.setMaxAge(30 * 60 * 60 * 1000);
 				idCook.setSecure(true);
+				logger.info("saveIdCookie 쿠키생성 요청!");
+				response.addCookie(idCook);
+			}else {
+				Cookie idCook = new Cookie("saveIdCookie", "");
+				idCook.setMaxAge(0);
+				logger.info("saveIdCookie 쿠키삭제 요청!");
 				response.addCookie(idCook);
 			}
 			if(loginCookieFlag) {
 				Cookie autoLoginAgeCookie = new Cookie("autoLogin", jSessionId);
+				logger.info(("Auto Login 쿠키생성 요청 [JSESSIONID]: "+jSessionId));
 				autoLoginAgeCookie.setMaxAge(30 * 60 * 60 * 1000);
 				autoLoginAgeCookie.setSecure(true);
 				response.addCookie(autoLoginAgeCookie);
 				service.autoLoginInfoUpdate(userId, jSessionId,autoLoginAgeCookie.getMaxAge());
+			}else {
+				Cookie autoLoginAgeCookie = new Cookie("autoLogin", "");
+				autoLoginAgeCookie.setMaxAge(0);
+				logger.info("autoLogin 쿠키삭제 요청!");
+				response.addCookie(autoLoginAgeCookie);
 			}
 			return "redirect:/app/main";
 		}else {
@@ -89,8 +103,8 @@ public class UserController {
 	@PostMapping("/userIdOverlapCheck")
 	public String userJoinTry(@RequestBody Map<String, String> id) {
 		String userId = id.get("userId");
+		logger.info("User id overlap Check : " + userId);
 		String msg = service.idOverlapCheck(userId);
-		System.out.println(userId);
 		return msg;
 	}
 	

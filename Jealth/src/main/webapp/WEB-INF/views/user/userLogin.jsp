@@ -230,6 +230,16 @@
 		alert('불편을 드려 죄송합니다. 회원가입시 오류가 발생 되었습니다. %n관리자에게 문의 하세요.');
 	}
 	
+	let cookies = document.cookie.split('; ');
+	
+	for(let i=0 ; i < cookies.length; i++){
+		if(cookies[i].split('=')[0] === 'saveIdCookie'){
+			let saveId = cookies[i].split('=')[1];
+			document.querySelector('input[name="userId"]').value = saveId;
+			document.querySelector('input[name="idCookieFlag"]').checked = true
+		}
+	}
+	
 	function loginTry(){
 		let inputId = document.querySelector('input[name="userId"]').value;
 		let inputPw = document.querySelector('input[name="userPw"]').value;

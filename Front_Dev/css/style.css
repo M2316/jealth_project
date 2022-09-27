@@ -1,3 +1,5 @@
+
+
 /* 드래그 허용 */ 
 .draggableText {
   -webkit-user-select:text;
@@ -25,15 +27,7 @@
     font-family: sans-serif;
     box-sizing: border-box;
   }
-  body{ /* 드래그 금지 */
-    -webkit-font-smoothing: subpixel-antialiased;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
+
   .calendar_wrap {
     justify-content: center;
     align-items: center;
@@ -165,19 +159,20 @@
 
 
 .jealth_logo{
-  height: 19vh;
-  line-height: 19vh;
+  height: 12vh;
+  line-height: 12vh;
 }
 .jealth_logo > .col-12{
   height: 100%;
+  line-height:100%
   padding: 0px 10px;
 }
 .join-header{
-  height: 4vh;
+  height: 5vh;
+  line-height: 5vh;
   text-align: center;
   border-top: 1px solid var(--font_color1);
   border-bottom: 1px solid var(--font_color1);
-  padding: 5px 0px;
   clear:both;
 }
 .join-header span{
@@ -193,7 +188,7 @@
   border: 1px solid var(--font_color1);
   border-radius: 15px 15px 0px 0px;
   margin: 4vh 20px 0px;
-  height: 64vh;
+  height: 68vh;
 }
 .item-list{
   padding: 20px 30px;
@@ -235,3 +230,19 @@
   text-align: center;
   background-color: #FFFFFF;
 }
+
+
+/* workout main Css */
+
+.workout-item{
+  
+  border-bottom: 1px solid black; 
+  padding:20px
+}
+
+
+
+
+
+
+

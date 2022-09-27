@@ -75,6 +75,7 @@ const renderCalendar = () => {
     for (let date of document.querySelectorAll('.this')) {
       if (+date.innerText === today.getDate()) {
         date.classList.add('today');
+        document.querySelector('.today').parentElement.style = 'border:1px solid black; width:30px; text-align:center ; border-radius:4px';
         break;
       }
     }
@@ -122,6 +123,15 @@ function click_calendar_date(e){
   } catch{
       return;
   }
+
+  console.log(document.querySelector('.year-month').innerHTML)
+  
 }
+
+
+
+// document.querySelector('.date').addEventListener('click',function(){
+//   console.log('chacnge 이벤트 발생');
+// })
 
 

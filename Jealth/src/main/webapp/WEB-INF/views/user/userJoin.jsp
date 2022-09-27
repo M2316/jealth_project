@@ -166,9 +166,7 @@ let nickFlag = false;
 
 
 $(function(){ //Jquery 시작
-	$(document).ready(function () {
-        $('input[name="weight"]').mask('000.00', { reverse: true });
-    });
+	
 	
 	//ID 비동기 통신으로 중복체크
 		$("#idCheckBtn").on("click",function(){

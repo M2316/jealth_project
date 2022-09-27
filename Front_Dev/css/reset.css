@@ -125,8 +125,21 @@ input[type="checkbox"]:checked::before {
 } 
 
 body{
-    overflow: unset;
     max-width:400px;
     
     margin: 0 auto;
 }
+  *{ 
+  /*
+   드래그 금지 
+   */
+    -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-touch-callout: none;
+/*  이거 키면 핸드폰에서 input 창에 입력이 안됨....
+*/
+    -webkit-user-select: none; 
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }

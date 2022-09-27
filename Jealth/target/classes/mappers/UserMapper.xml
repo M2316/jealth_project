@@ -46,4 +46,8 @@
 	<update id="autoLoginInfoUpdate">
 		UPDATE user_info SET cookie_age = #{cookieAge}, jsession_id = #{jSessionId} WHERE user_id = #{userId}
 	</update>
+	
+	<select id="autoLoginCheck" resultMap="userMap">
+		SELECT * FROM user_info WHERE jsession_id = #{jSessionId}
+	</select>
 </mapper>

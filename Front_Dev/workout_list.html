@@ -33,7 +33,7 @@
         <!-- calendar Include로 뺄 예정 -->
         <div class="calendar_wrap">
             <div class="header">
-                <div class="year-month draggableText"></div>
+                <div class="year-month" onchange="get_workout_recode()"></div>
                 <div class="nav">
                     <button class="nav-btn go-prev" onclick="prevMonth()"><img src="imgs/left-chevron.png" alt=""></button>
                     <button class="nav-btn go-today" onclick="goToday()">Today</button>
@@ -80,14 +80,14 @@
     
 
 
-    <div class="container">
+    <div class="container workout-item">
         <div class="row workout-del-btn">
             <small>지우기</small>
         </div>
         <div class="row workout-name">
             <span>벤치프레스</span>
         </div>
-        <div class="row workout-list-wrap">
+        <div class="row workout-list-wrap" >
             <div class="col-6">
                 <input type="checkbox"> <span>1</span>세트
             </div>
