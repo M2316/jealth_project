@@ -1,4 +1,7 @@
-
+body{
+  overflow: none;
+  max-width: 400px;
+}
 
 /* 드래그 허용 */ 
 .draggableText {
@@ -20,6 +23,10 @@
 :root{
     --calendar-date-width : calc((100vw / 7) -30);
     --font_color1 : #707070;
+    --data-bg-odd-color : rgba(50, 76, 82, 0.144);
+    --data-bg-even-color : rgba(50, 82, 82, 0.048);
+    --max-width : 400px;
+    --width : 100%;
   }
   * {
     margin: 0;
@@ -27,18 +34,35 @@
     font-family: sans-serif;
     box-sizing: border-box;
   }
+  .width_value{
+    max-width: var(--max-width);
+    width: var(--width);
+  }
+  .display_none{
+    display: none;
+  }
+
+
+
+  .page_nav{
+    position: fixed;
+    z-index: 20;
+    background: white;
+  }
+
 
   .calendar_wrap {
     justify-content: center;
     align-items: center;
     min-height: 25vh;
-    max-width: 400px;
+    
     padding: 10px 0px;
     border-top: 2px solid var(--font_color1);
     border-bottom: 2px solid var(--font_color1);
   }
   .calendar {
-    width: 100vw;
+    width: var(--width);
+    max-width: var(--max-width);
     padding: 0px 20px 0px 20px;
   }
   .header {
@@ -135,7 +159,6 @@
   }
   .header_item{
     margin: 0 auto;
-    width: 100%;
     text-align: center;
     border-left: 1px solid var(--font_color1);
 }
@@ -164,9 +187,10 @@
 }
 .jealth_logo > .col-12{
   height: 100%;
-  line-height:100%
+  line-height:100%;
   padding: 0px 10px;
 }
+
 .join-header{
   height: 5vh;
   line-height: 5vh;
@@ -220,6 +244,7 @@
 .workout-function-btn-wrap{
   text-align: center;
   padding: 7px 10px 5px 0px;
+  overflow-x: none;
 }
 
 .function-btn{
@@ -233,16 +258,262 @@
 
 
 /* workout main Css */
+.workout-item > *{
+  width: 100%;
+  margin: 0 auto;
+}
 
 .workout-item{
-  
-  border-bottom: 1px solid black; 
+  border-bottom: 2px solid var(--font_color1); 
   padding:20px
+}
+.workout_recode_wrap{
+  justify-content: center;
+}
+.workout-item .add_del_box{
+  margin-top: 10px;
+}
+.add_del_box{
+  text-align: center;
+}
+.workout-name strong{
+  width: 100%;
+  border-bottom: 1px solid var(--font_color1);
+  margin: 0px 0px 10px;
+  padding: 0 0 5px 20px;
+  color: var(--font_color1);
+}
+
+.workout-item small{
+  text-align: right;
+}
+
+.workout-item:last-child{
+  border-bottom: none;
+}
+
+.workout_recode_box{
+  padding: 10px 0px 10px 10px;
+}
+.workout_recode{
+  color: black;
+  font-weight: 900;
+}
+.row .workout-list-wrap:nth-child(odd){
+  background: var(--data-bg-odd-color);
+}
+.row .workout-list-wrap:nth-child(even){
+  background: var(--data-bg-even-color);
+}
+.workout_recode_box input[type="checkbox"]{
+  width: 24px;
+  height: 24px;
+  vertical-align:-6px;
 }
 
 
 
+.set_modify_btn span{
+  width: 100%;
+  padding: 0px 20px;
+  border : 2px solid var(--font_color1);
+  font-weight: 900;
+}
+
+.workout-recode-wrap{
+  position: absolute;
+  top: 343px;
+}
+.workout_list_header{
+  z-index: 20;
+  position: fixed;
+  background: white;
+  border-bottom: 2px solid var(--font_color1);
+  border-top: 2px solid var(--font_color1);
+  margin: 0 auto;
+  height: 50px;
+  line-height: 50px;
+  font-weight: 900;
+}
+.workout_list_header_title{
+  font-size: 30px;
+  color: var(--font_color1);
+  line-height: 50px
+}
+
+.workout_list_header div{
+  text-align: center;
+}
+
+.workout_list_header img{
+  margin: 7px 0px 5px 10px;
+  height: 30px;
+  line-height: 46px;
+}
+.worout_list_modify_btn{
+  line-height: 46px;
+}
+.worout_list_modify_btn span{
+  border: 1px solid var(--font_color1);
+  padding: 8px 6px;
+  border-radius: 10px;
+  color: white;
+  background: var(--font_color1);
+  
+}
+
+.workout_list_container{
+  position: absolute;
+  margin: 0 auto;
+  top: 60px;
+}
+.workout_bundle{
+  margin: 0 auto;
+}
+.workout_target_muscle{
+  color: var(--font_color1);
+  border-bottom: 2px solid var(--font_color1);
+  margin: 0 10px;
+}
+
+.workout_target_muscle_name{
+  padding-left: 10px;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  font-weight: 900;
+}
+
+.workout_title_box{
+  margin: 10px;
+}
+.workout_title{
+  height: 40px;
+  margin: 0px 10px;
+  font-size: 1em;
+  font-weight: 900;
+  color: var(--font_color1);
+  /* padding: 5px 10px; */
+}
+.workout_title .col-2{
+  height: 40px;
+  line-height: 40px;
+}
+
+ .workout_title:nth-child(even){
+  background-color: var(--data-bg-even-color)
+}
+.workout_title:nth-child(odd){
+  background-color: var(--data-bg-odd-color)
+} 
+.workout_title .col-9{
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+}
+
+.workout_title input[type='checkbox']{
+  width: 25px;
+  height: 25px;
+  margin: 7.5px;
+}
+.workout_title span{
+  white-space:nowrap;
+}
+
+/* workout modify mode */
+.workout_add_del_btn{
+  text-align: center;
+  
+}
+.workout_add_del_btn span{
+  font-size: 0.9em;
+  font-weight: 700;
+  vertical-align: -12px;
+  margin: 0px 10px;
+  
+}
+
+.workout_list_footer_box{
+  position: fixed;
+  z-index: 20;
+  bottom: 0px;
+  border: 2px solid var(--font_color1);
+  text-align: center;
+  height: 50px;
+  background: white;
+  border-radius: 50px;
+  line-height: 50px;
+  font-weight: 900;
+  color: var(--font_color1);
+  font-size: 1.4em;
+}
+
+.workout_list_footer_item{
+  display: inline;
+}
 
 
 
+.recode_value_ok{
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  font-weight: 900;
+  color: var(--font_color1);
+}
+.fixed_selector_wrap{
+  position: fixed;
+  bottom: 0px;
+  background: white;
+  height: 140px;
+  border: 2px solid var(--font_color1);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom: none;
+  
+  
+}
+.fixed_selector::after{
+  content: '';
+  clear: both;
+  
+}
+.fixed_selector{
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+}
 
+.fixed_selector .recode_weight{
+  float: left;
+  width: 20%;
+  height: 30px;
+  line-height: 30px;
+  
+  
+}
+
+.fixed_selector .recode_weight div{
+  margin: 0 auto;
+  text-align: center;
+  width: 60px;
+  border: 2px solid var(--font_color1);
+  border-radius: 11px;
+  background: #3a3a3b;
+  
+}
+
+.recode_weight input[type="text"]{
+  text-align: center;
+  width: 30px;
+  font-weight: 900;
+  color: black;
+}
+.recode_weight input[type="text"]:focus{
+  border: none;
+}
+.recode_weight{
+  margin: 0 auto;
+  font-weight: 900;
+  color: rgb(255, 255, 255);
+}
