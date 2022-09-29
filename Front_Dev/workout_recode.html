@@ -2,8 +2,10 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MHDP Full Calendar</title>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <title>Jealth Workout</title>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -74,204 +76,19 @@
                     </div>
                     <div class="col-3">
                         <div class="workout-function-btn-wrap">
-                            <button type="button" class="function-btn" id="workout_list_open_btn">운동목록</button>
+                            <button type="button" class="function-btn" id="workout_list_open_btn">루틴추가</button>
                         </div>
                     </div>
                 </div>
             </div>
     
-    
-            <div class="container workout-item width_value">
-                <div class="row workout-del-btn">
-                    <div class="col-9"></div>
-                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
-                </div>
-                <div class="row workout-name">
-                    <strong>벤치프레스</strong>
-                </div>
-                <div class="row workout_recode_wrap">
-                    <div class="row workout-list-wrap">
-                        <div class="col-6 workout_recode_box">
-                            <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
-                        </div>
-                        <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                            <span class="workout_recode">80</span>
-                            <strong>Kg</strong>
-                            <strong> X </strong>
-                            <span class="workout_recode">1</span>
-                            <strong>회</strong>
-                        </div>
-                    </div>
-                    <div class="row workout-list-wrap">
-                        <div class="col-6 workout_recode_box">
-                            <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">2</span><strong>세트</strong>
-                        </div>
-                        <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                            <span class="workout_recode">80</span>
-                            <strong>Kg</strong>
-                            <strong> X </strong>
-                            <span class="workout_recode">2</span>
-                            <strong>회</strong>
-                        </div>
-                    </div>
-                </div>
+            <!-- 루틴 목록이 들어가는 공간 -->
+            <div class="workout-item-wrap">
                 
-                <div class="add_del_box row">
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
-                </div>
             </div>
-            <div class="container workout-item width_value">
-                <div class="row workout-del-btn">
-                    <div class="col-9"></div>
-                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
-                </div>
-                <div class="row workout-name">
-                    <strong>벤치프레스</strong>
-                </div>
-                <div class="row workout_recode_wrap">
-                    <div class="row workout-list-wrap">
-                        <div class="col-6 workout_recode_box">
-                            <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
-                        </div>
-                        <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                            <span class="workout_recode">80</span>
-                            <strong>Kg</strong>
-                            <strong> X </strong>
-                            <span class="workout_recode">3</span>
-                            <strong>회</strong>
-                        </div>
-                    </div>
-                    <div class="row workout-list-wrap">
-                        <div class="col-6 workout_recode_box">
-                            <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">2</span><strong>세트</strong>
-                        </div>
-                        <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                            <span class="workout_recode">80</span>
-                            <strong>Kg</strong>
-                            <strong> X </strong>
-                            <span class="workout_recode">4</span>
-                            <strong>회</strong>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="add_del_box row">
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
-                </div>
-            </div>
-            <div class="container workout-item width_value">
-                <div class="row workout-del-btn">
-                    <div class="col-9"></div>
-                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
-                </div>
-                <div class="row workout-name">
-                    <strong>벤치프레스</strong>
-                </div>
-                <div class="row workout_recode_wrap">
-                    <div class="row workout-list-wrap">
-                        <div class="col-6 workout_recode_box">
-                            <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
-                        </div>
-                        <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                            <span class="workout_recode">80</span>
-                            <strong>Kg</strong>
-                            <strong> X </strong>
-                            <span class="workout_recode">5</span>
-                            <strong>회</strong>
-                        </div>
-                    </div>
-                    <div class="row workout-list-wrap">
-                        <div class="col-6 workout_recode_box">
-                            <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">2</span><strong>세트</strong>
-                        </div>
-                        <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                            <span class="workout_recode">80</span>
-                            <strong>Kg</strong>
-                            <strong> X </strong>
-                            <span class="workout_recode">6</span>
-                            <strong>회</strong>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="add_del_box row">
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
-                </div>
-            </div>
-            <div class="container workout-item width_value">
-                <div class="row workout-del-btn">
-                    <div class="col-9"></div>
-                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
-                </div>
-                <div class="row workout-name">
-                    <strong>벤치프레스</strong>
-                </div>
-                <div class="row workout_recode_wrap">
-                    <div class="row workout-list-wrap">
-                        <div class="col-6 workout_recode_box">
-                            <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
-                        </div>
-                        <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                            <span class="workout_recode">80</span>
-                            <strong>Kg</strong>
-                            <strong> X </strong>
-                            <span class="workout_recode">7</span>
-                            <strong>회</strong>
-                        </div>
-                    </div>
-                    <div class="row workout-list-wrap">
-                        <div class="col-6 workout_recode_box">
-                            <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">2</span><strong>세트</strong>
-                        </div>
-                        <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                            <span class="workout_recode">80</span>
-                            <strong>Kg</strong>
-                            <strong> X </strong>
-                            <span class="workout_recode">8</span>
-                            <strong>회</strong>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="add_del_box row">
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
-                </div>
-            </div>
-
-
-            <div class="container workout-item width_value">
-                <div class="row workout-del-btn">
-                    <div class="col-9"></div>
-                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
-                </div>
-                <div class="row workout-name">
-                    <strong>벤치프레스</strong>
-                </div>
-                <div class="row workout_recode_wrap">
-                    <div class="row workout-list-wrap">
-                        <div class="col-6 workout_recode_box">
-                            <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
-                        </div>
-                        <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                            <span class="workout_recode">0</span>
-                            <strong>Kg</strong>
-                            <strong> X </strong>
-                            <span class="workout_recode">0</span>
-                            <strong>회</strong>
-                        </div>
-                    </div>
-                </div>
-                <div class="add_del_box row">
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
-                    <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
-                </div>
-            </div>
-
-
+        
+            
+            
             
             
 
@@ -281,18 +98,18 @@
                 <div class="recode_bg"></div>
                 <div class="recode_value_ok" id="recode_value_ok" style="cursor: pointer; width: 20%; margin: 0 auto;">확인</div>
                 <div class="fixed_selector width_value">
-                    <div class="recode_weight"><div id="recode_weight_minus5" class="recode_weight_minus5" style="cursor: pointer;">-5</div></div>
-                    <div class="recode_weight"><div id="recode_weight_minus1" class="recode_weight_minus1" style="cursor: pointer;">-1</div></div>
+                    <div class="recode_weight"><div id="recode_weight_minus5" class="recode_weight_minus5" data-name="weight" style="cursor: pointer;">-5</div></div>
+                    <div class="recode_weight"><div id="recode_weight_minus1" class="recode_weight_minus1" data-name="weight" style="cursor: pointer;">-1</div></div>
                     <div class="recode_weight"><div id="recode_weight_v" class="recode_weight_t row" style="background: none; border:none"><input class="col-9" id="" type="text" placeholder="0"><span class="col-4" style="color:black">Kg</span></div></div>
-                    <div class="recode_weight"><div id="recode_weight_plus1" class="recode_weight_plus1" style="cursor: pointer;">+1</div></div>
-                    <div class="recode_weight"><div id="recode_weight_plus5" class="recode_weight_plus5" style="cursor: pointer;">+5</div></div>
+                    <div class="recode_weight"><div id="recode_weight_plus1" class="recode_weight_plus1" data-name="weight" style="cursor: pointer;">+1</div></div>
+                    <div class="recode_weight"><div id="recode_weight_plus5" class="recode_weight_plus5" data-name="weight" style="cursor: pointer;">+5</div></div>
                 </div>
                 <div class="fixed_selector width_value">
-                    <div class="recode_weight"><div id="recode_count_minus5" class="recode_weight_minus5" style="cursor: pointer;">-5</div></div>
-                    <div class="recode_weight"><div id="recode_count_minus1" class="recode_weight_minus1" style="cursor: pointer;">-1</div></div>
+                    <div class="recode_weight"><div id="recode_count_minus5" class="recode_weight_minus5" data-name="count" style="cursor: pointer;">-5</div></div>
+                    <div class="recode_weight"><div id="recode_count_minus1" class="recode_weight_minus1" data-name="count" style="cursor: pointer;">-1</div></div>
                     <div class="recode_weight"><div id="recode_count_v" class="recode_weight_t row" style="background: none; border:none"><input class="col-9" id="" type="text" placeholder="0"><span class="col-4" style="color:black">회</span></div></div>
-                    <div class="recode_weight"><div id="recode_count_plus1" class="recode_weight_plus1" style="cursor: pointer;">+1</div></div>
-                    <div class="recode_weight"><div id="recode_count_plus5" class="recode_weight_plus5" style="cursor: pointer;">+5</div></div>
+                    <div class="recode_weight"><div id="recode_count_plus1" class="recode_weight_plus1" data-name="count" style="cursor: pointer;">+1</div></div>
+                    <div class="recode_weight"><div id="recode_count_plus5" class="recode_weight_plus5" data-name="count" style="cursor: pointer;">+5</div></div>
                 </div>
             </div>
             
@@ -332,37 +149,12 @@
             <div class="workout_bundle width_value">
                 <div class="workout_target_muscle row">
                     <div class="workout_target_muscle_name col-8"><span>가슴</span><img src=""></IMG></div>
-                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span style="cursor: pointer;">삭제</span></div>
+                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
                 </div>
                 <div class="workout_title_box">
                     <div class="workout_title row">
                         <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>벤치 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>덤벨 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 덤벨 프레스ㅂㅂqqㅂㅂqqqqqㅂ</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 해머 머신</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 플라이</span></div>
+                        <div class="col-9"><span>[목록편집] 버튼으로 운동 추가</span></div>
                         <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
                     </div>
                 </div>
@@ -376,40 +168,10 @@
 
             <div class="workout_bundle width_value">
                 <div class="workout_target_muscle row">
-                    <div class="workout_target_muscle_name col-8"><span>가슴</span><img src=""></IMG></div>
-                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span style="cursor: pointer;">삭제</span></div>
+                    <div class="workout_target_muscle_name col-8"><span>어깨</span><img src=""></IMG></div>
+                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
                 </div>
                 <div class="workout_title_box">
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>벤치 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>덤벨 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 덤벨 프레스ㅂㅂqqㅂㅂqqqqqㅂ</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 해머 머신</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 플라이</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
                 </div>
             </div>
 
@@ -421,40 +183,10 @@
 
             <div class="workout_bundle width_value">
                 <div class="workout_target_muscle row">
-                    <div class="workout_target_muscle_name col-8"><span>가슴</span><img src=""></IMG></div>
-                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span style="cursor: pointer;">삭제</span></div>
+                    <div class="workout_target_muscle_name col-8"><span>등</span><img src=""></IMG></div>
+                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
                 </div>
                 <div class="workout_title_box">
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>벤치 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>덤벨 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 덤벨 프레스ㅂㅂqqㅂㅂqqqqqㅂ</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 해머 머신</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 플라이</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
                 </div>
             </div>
 
@@ -466,40 +198,10 @@
 
             <div class="workout_bundle width_value">
                 <div class="workout_target_muscle row">
-                    <div class="workout_target_muscle_name col-8"><span>가슴</span><img src=""></IMG></div>
-                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span style="cursor: pointer;">삭제</span></div>
+                    <div class="workout_target_muscle_name col-8"><span>코어</span><img src=""></IMG></div>
+                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
                 </div>
                 <div class="workout_title_box">
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>벤치 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>덤벨 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 덤벨 프레스ㅂㅂqqㅂㅂqqqqqㅂ</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 해머 머신</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 플라이</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
                 </div>
             </div>
 
@@ -511,40 +213,10 @@
 
             <div class="workout_bundle width_value">
                 <div class="workout_target_muscle row">
-                    <div class="workout_target_muscle_name col-8"><span>가슴</span><img src=""></IMG></div>
-                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span style="cursor: pointer;">삭제</span></div>
+                    <div class="workout_target_muscle_name col-8"><span>하체</span><img src=""></IMG></div>
+                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
                 </div>
                 <div class="workout_title_box">
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>벤치 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>덤벨 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 덤벨 프레스ㅂㅂqqㅂㅂqqqqqㅂ</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 해머 머신</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 플라이</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
                 </div>
             </div>
 
@@ -556,85 +228,13 @@
 
             <div class="workout_bundle width_value">
                 <div class="workout_target_muscle row">
-                    <div class="workout_target_muscle_name col-8"><span>가슴</span><img src=""></IMG></div>
-                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span style="cursor: pointer;">삭제</span></div>
+                    <div class="workout_target_muscle_name col-8"><span>기타</span><img src=""></IMG></div>
+                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
                 </div>
                 <div class="workout_title_box">
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>벤치 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>덤벨 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 덤벨 프레스ㅂㅂqqㅂㅂqqqqqㅂ</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 해머 머신</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 플라이</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
                 </div>
             </div>
-
-
-
-
-            <div class="workout_bundle width_value">
-                <div class="workout_target_muscle row">
-                    <div class="workout_target_muscle_name col-8"><span>가슴</span><img src=""></IMG></div>
-                    <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span style="cursor: pointer;">삭제</span></div>
-                </div>
-                <div class="workout_title_box">
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>벤치 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>덤벨 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 덤벨 프레스ㅂㅂqqㅂㅂqqqqqㅂ</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>인클라인 해머 머신</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 프레스</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>체스트 플라이</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
-                </div>
-            </div>
-
+            <div class="width_value" style="height: 100px;"></div>
 
 
 
@@ -652,7 +252,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">수정할 내용을 입력하세요</h4>
+              <h4 class="modal-title" id="myModalLabel">what's your workout name?</h4>
             </div>
             <div class="modal-body col-12">
               <input id="modal_input" type="text" style="width: 100%;">
@@ -670,24 +270,13 @@
  
 
 <script>
-//////////////////////////////////////
-//////더블터치방지////////////////////
-        document.documentElement.addEventListener('touchstart', function (event) {
-     if (event.touches.length > 1) {
-          event.preventDefault(); 
-        } 
-    }, false);
 
-var lastTouchEnd = 0; 
 
-document.documentElement.addEventListener('touchend', function (event) {
-     var now = (new Date()).getTime();
-     if (now - lastTouchEnd <= 300) {
-          event.preventDefault(); 
-        } lastTouchEnd = now; 
-    }, false);
-//////////////////////////////////////////
 
+//더블클릭 무시
+document.body.addEventListener('dblclick',function(){
+    return;
+})
 
 
 
@@ -725,6 +314,7 @@ document.documentElement.addEventListener('touchend', function (event) {
                         </div>
             `;
             e.target.parentElement.parentElement.parentElement.querySelector('.workout_recode_wrap').append($dom);
+            $('.workout_recode_count').on('click',workout_recode_count_open);
             return;
         }else{
             const $dom = document.createElement('div');
@@ -813,7 +403,13 @@ document.documentElement.addEventListener('touchend', function (event) {
 ////////////////////////////////////////////////////////////
     let $target ;
     function workout_recode_count_open(e){
+
+
+
         if(e.target.parentElement.parentElement.classList.value === 'row workout-list-wrap'){
+            // if(){
+            //     $('#fixed_selector_wrap').classList.toggle('display_none');
+            // }
             $target = e.target.parentElement.parentElement;
         }else if(e.target.parentElement.classList.value === 'row workout-list-wrap'){
             $target = e.target.parentElement;
@@ -821,7 +417,7 @@ document.documentElement.addEventListener('touchend', function (event) {
             return;
         }
 
-        if($target.parentElement.parentElement.parentElement.querySelector('.null_box') === null){
+        if($target.parentElement.parentElement.parentElement.parentElement.lastChild.className !== 'width_value null_box'){
             let $dom = document.createElement('div');
             $dom.style = "height:150px";
             $dom.classList.add('width_value','null_box');
@@ -844,7 +440,19 @@ document.documentElement.addEventListener('touchend', function (event) {
         }
     }
     function workout_recode_count_change(e){
-        console.log(e.target);
+        let $a
+        if(e.target.tagName === 'INPUT'){
+            $a = e.target;
+        }else{
+            $a = e.target.parentElement.parentElement.querySelector('input');
+        }
+        let dataName = $a.parentElement.parentElement.parentElement.querySelector('.recode_weight div').dataset.name
+        if(dataName === 'weight'){
+            $target.querySelectorAll('.workout_recode_count .workout_recode')[0].innerHTML = $a.value;
+        }else if(dataName === 'count'){
+            $target.querySelectorAll('.workout_recode_count .workout_recode')[1].innerHTML = $a.value;
+        }else{return;}
+
     }
     
 ////////////////////////////////////////////////////////////
@@ -858,6 +466,7 @@ document.documentElement.addEventListener('touchend', function (event) {
     $('.workout_recode_count').on('click',workout_recode_count_open);
     $('#recode_value_ok').on('click',workout_recode_count_close);
     $('.recode_weight_minus5, .recode_weight_minus1, .recode_weight_plus1, .recode_weight_plus5').on('click',workout_recode_count_updown_btn);
+    $('.recode_weight_minus5, .recode_weight_minus1, .recode_weight_plus1, .recode_weight_plus5').on('click',workout_recode_count_change);
     $('.recode_weight input').on('change',workout_recode_count_change);
 
 
@@ -873,23 +482,25 @@ document.documentElement.addEventListener('touchend', function (event) {
 
 
 
-
+        function open_modal_event(e){
+            $('#modalBox').modal('show');
+            modal_local = e;
+        }
 
         // 모달 open 이벤트
-        $('.openModalBtn').on('click',function(e){
-            modal_local = e;
-            $('#modalBox').modal('show');
-        })
+        $('.openModalBtn').on('click',open_modal_event)
 
 
         // 모달 확인 버튼 이벤트
         $('#okModalBtn').on('click', function(){
             //모달에 입력된 값을 모달 밖으로 적용시킨다
             modal_local.target.parentElement.parentElement.querySelector('.col-9 span').innerHTML = $('#modal_input').val();
+            $('#modal_input').val('');
             $('#modalBox').modal('hide');
         });
         // 모달 취소 버튼 이벤트
         $('#closeModalBtn').on('click', function(){
+            $('#modal_input').val('');
             $('#modalBox').modal('hide');
         });
 
@@ -899,9 +510,17 @@ document.documentElement.addEventListener('touchend', function (event) {
         $('.workout_add_del_btn span[name="addBtn"]').on('click',function(e){
             e.target.parentElement.parentElement.parentElement.querySelector('.workout_title_box').innerHTML += `<div class="workout_title row">
                         <div class="col-2"><input class="display_none" type="checkbox"><img src="imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>!~운동명을 변경해 주세요~!</span></div>
+                        <div class="col-9"><span>what's your workout name?</span></div>
                         <div class="col-1"><img class="openModalBtn" src="imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>`
+                    </div>`;
+            $('.openModalBtn').on('click',open_modal_event);
+        });
+        $('.workout_add_del_btn span[name="delBtn"]').on('click',function(e){
+            let $dom = e.target.parentElement.parentElement.parentElement.querySelectorAll('.workout_title')[e.target.parentElement.parentElement.parentElement.querySelectorAll('.workout_title').length-1];
+            e.target.parentElement.parentElement.parentElement.querySelector('.workout_title_box').removeChild($dom)
+        });
+        $('.workout_bundle .workout_title .col-2 img').on('click',function(e){
+            e.target.parentElement.parentElement.remove();
         });
     }); // JQuery 끝
 
@@ -909,21 +528,20 @@ document.documentElement.addEventListener('touchend', function (event) {
     let choose_count = 0;
     
     
-    //체크박스 클릭스 Footer에 선택한 운동 개수 증가하는 이벤트 추가
-    try{
-        for(let i in document.querySelectorAll('.workout_title input[type="checkbox"]')){
-            document.querySelectorAll('.workout_title input[type="checkbox"]')[i].addEventListener('click',function(){
-                if(document.querySelectorAll('.workout_title input[type="checkbox"]')[i].checked){
-                    choose_count ++;
-                    document.getElementById('choose_count').innerHTML = choose_count;
-                }
-            });
-        }        
-    }catch(err){
-        if(err.message !== 'document.querySelectorAll(...)[i].addEventListener is not a function' ){
-            console.log(err);
+    //체크박스 클릭스 Footer에 선택한 운동 개수 증가하는 이벤트 추가      
+    function workout_title_checked_evt(e){
+        if(e.target.checked){
+            choose_count ++;
+            document.getElementById('choose_count').innerHTML = choose_count;
+        }else{
+            choose_count --;
+            document.getElementById('choose_count').innerHTML = choose_count;
         }
     }
+    $('.workout_title input[type="checkbox"]').on('click',workout_title_checked_evt);
+    
+
+
 
 
 
@@ -955,7 +573,7 @@ document.documentElement.addEventListener('touchend', function (event) {
         document.querySelector('#workout_save_btn').setAttribute('id','workout_modify_btn');
         document.querySelector('#workout_modify_btn').addEventListener('click',workout_modify_btn);
 
-        if(confirm('저장을 진행 하겠습니까?')){
+        if(confirm('저장하시겠습니까?')){
 
         }
 
@@ -1015,18 +633,22 @@ document.documentElement.addEventListener('touchend', function (event) {
                                         <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
                                     </div>`;
                 
-                document.querySelector('.workout-recode-wrap').appendChild($dom);
+                document.querySelector('.workout-recode-wrap .workout-item-wrap').appendChild($dom);
+                $checked_box[i].checked = false
             }
             
         }
+        //체크 했던 항목을 체크 해제 상태로 변경함
         display_toggle();
         //이미 기존에 표시되어있는 데이터는 이벤트가 걸려있기 때문에 기존 이벤트 삭제후에 다시 적용
         $('.workout_recode_set_add').off('click',workout_recode_set_add);
         $('.workout_recode_set_del').off('click',workout_recode_set_del);
         $('.workout-del-btn .col-3').off('click',recode_list_del);
-        $('.workout_recode_set_add').on('click',workout_recode_set_add);
-        $('.workout_recode_set_del').on('click',workout_recode_set_del);
-        $('.workout-del-btn .col-3').on('click',recode_list_del);
+        $('.workout_recode_count').off('click',workout_recode_count_open);
+        $('.workout_recode_set_add').on('click',workout_recode_set_add);//레코드 추가 이벤트
+        $('.workout_recode_set_del').on('click',workout_recode_set_del);//레코드 삭제 이벤트
+        $('.workout-del-btn .col-3').on('click',recode_list_del); //레코드 번들 삭제 이벤트
+        $('.workout_recode_count').on('click',workout_recode_count_open);
     }
     
 

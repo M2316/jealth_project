@@ -309,6 +309,7 @@ body{
   width: 24px;
   height: 24px;
   vertical-align:-6px;
+  z-index: 0;
 }
 
 
@@ -516,4 +517,28 @@ body{
   margin: 0 auto;
   font-weight: 900;
   color: rgb(255, 255, 255);
+}
+/* 부트스트랩 모달 크기와 위치 조절 */
+.modal.fade .modal-dialog{
+  top: 40%;
+  width: 300px;
+  margin: 0 auto;
+}
+.modal.fade .modal-dialog .modal-header h4{
+  margin: 0 auto;
+}
+.modal.fade .modal-dialog input{
+  border: 2px solid var(--font_color1);
+  border-radius: 20px;
+  text-align: center;
+}
+.modal.fade .modal-dialog .modal-footer{
+  margin: 0 auto;
+}
+.modal.fade .modal-dialog .btn{
+  font-weight: 900;
+}
+.modal.fade .modal-dialog .btn-default{
+  background: var(--font_color1);
+  color:white;
 }

@@ -24,7 +24,10 @@ kbd,
 samp,
 pre{font-family:theme('fontFamily.mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace);font-size:1em}small{font-size:80%}
 sub,
-sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}
+sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sub{bottom:-0.25em}
+sup{top:-0.5em}
+table{text-indent:0;border-color:inherit;border-collapse:collapse}
 button,
 input,
 optgroup,
@@ -128,16 +131,13 @@ input[type="checkbox"]:checked::before {
   *{ 
   /*
    드래그 금지 
+   -webkit-font-smoothing: subpixel-antialiased;
+   -webkit-touch-callout: none;
+   -khtml-user-select: none;
+   -ms-user-select: none;
+   -moz-user-select: none;
    */
-    -webkit-font-smoothing: subpixel-antialiased;
-    -webkit-touch-callout: none;
-/*  이거 키면 핸드폰에서 input 창에 입력이 안됨....
-*/
-    -webkit-user-select: none; 
-    -khtml-user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+   user-select: none;
   }
 
 
