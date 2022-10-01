@@ -83,7 +83,7 @@
                 </div>
                 <div class="container input-wrap">
                     <div class="row">
-                        <div class="col-12">연령대</div>
+                        <div class="col-12">나이</div>
                     </div>
                     <div class="row">
                         <div class="col-12"><input class="form-control" type="text" placeholder="Age" name="userAge" disabled readonly></div>
@@ -197,6 +197,9 @@ $(function(){ //Jquery 시작
 						idFlag = true;
 					}else if(result === 'idOverlap'){
 						alert(userId + '는 중복된 아이디입니다.');
+						$('#idCheckText').text('Sorry!!');
+						$('#idCheckText').css('color','red');
+						$('#idCheckText').css('margin-left','15px');
 						idFlag = false;
 					}else{
 						alert('글자 수를 확인해 주세요~!');
@@ -274,7 +277,7 @@ inputNick.onkeyup = function(){
 		document.getElementById("inputNick").style.borderColor = "green";
 		nickFlag = true;
 	}else{
-		document.getElementById("nickCheckText").innerHTML = "사욜할 수 없는 닉네임입니다.";
+		document.getElementById("nickCheckText").innerHTML = "사용할 수 없는 닉네임입니다.";
 		document.getElementById("nickCheckText").style.color = "red";
 		document.getElementById("nickCheckText").style.marginLeft = "15px";
 		document.getElementById("inputNick").style.borderColor = "red";
@@ -309,12 +312,24 @@ $('#joinBtn').on('click',function(){
 		$("#input[name='userSex']")[0].focus();
 	}else{
 		if(confirm("Jealth 회원가입 하시겠습니까?")){
+			
+			
+			for(let i=0;i < document.querySelectorAll('input[type="number"]').length; i++){
+				if(document.querySelectorAll('input[type="number"]')[i].value === ''){
+					document.querySelectorAll('input[type="number"]')[i].value = 0;
+				}
+			}
 			document.joinForm.submit();
 			console.log('회원가입 요청~!');
 		} 
 	}
 	
 })
+
+function age_input_set(e){
+	console.log('33333');
+}
+
 
 
  
@@ -332,5 +347,22 @@ $('#joinBtn').on('click',function(){
 ////		TUI DATE PICKER 		////
 ////			  END		 		////
 ////////////////////////////////////////        
+
+	function change_age_input(e){
+		console.log(e.target);
+		if(e.target.classList[0] === 'tui-calendar-date'){
+			
+			console.log(e.target+'실행~!');
+			
+	 		let selected_date = document.querySelector(('#datepicker-input')).value.substring(0,4);
+			let today = new Date();   
+			let year = today.getFullYear(); // 년도
+			let age = year - selected_date + 1;
+	
+			document.querySelector('input[name="userAge"]').value = age +' 세';
+		}
+	}
+
+	$('#wrapper').on('click',change_age_input);
 </script>
 </html>

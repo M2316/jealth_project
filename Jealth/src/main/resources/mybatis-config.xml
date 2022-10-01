@@ -14,5 +14,6 @@
   	<!-- typeAliases는 mapper에서 사용할 때 간편하게 부르기 위해 설정 해주는 것  --> 
  	<typeAliases>
   		<typeAlias type="net.ddns.jealth.model.UserVO" alias="user"/>
+  		<typeAlias type="net.ddns.jealth.model.WorkoutVO" alias="workout"/>
   	</typeAliases>
   </configuration>

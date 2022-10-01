@@ -1,4 +1,4 @@
-package net.ddns.jealth.user.controller;
+package net.ddns.jealth.controller;
 
 import java.util.Map;
 
@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.tagext.TryCatchFinally;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,12 +87,21 @@ public class UserController {
 		}		
 	}
 	//로그아웃 시도
-	@PostMapping("/logoutTry")
-	public String logoutTry(HttpServletRequest request) {
+	@GetMapping("/logoutTry")
+	public String logoutTry(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.invalidate();
+		Cookie[] coo = request.getCookies();
+		for(int i=0; i<coo.length;i++) {
+			if(coo[i].getName().equals("autoLogin")) {
+				coo[i].setMaxAge(0);
+				response.addCookie(coo[i]);
+				logger.info(coo[i].getName() + " : 쿠키삭제 완료[logoutTry]");
+			}
+		}
 		return "/user/userLogin";
 	}
+	
 	
 	//회원가입 페이지 요청
 	@GetMapping("/userJoin")
@@ -120,7 +130,7 @@ public class UserController {
 		return "redirect:/user/userLogin";
 	}
 	
-	
+	//로그아웃 시도 요청
 	
 	
 	

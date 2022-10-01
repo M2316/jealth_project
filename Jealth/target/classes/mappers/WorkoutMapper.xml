@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.ddns.jealth.mapper.IWorkoutMapper">
+	<resultMap type="workout" id="workoutMap">
+		<id property="userId" column="user_id"/>
+		<result property="workoutNo" column="workout_no"/>
+		<result property="workoutRecodeAddNo" column="workout_recode_add_no"/>
+		<result property="workoutName" column="workout_name"/>
+		<result property="musclePart" column="muscle_part"/>
+		<result property="workoutRoundNo" column="workout_round_no"/>
+		<result property="workoutCount" column="workout_count"/>
+		<result property="workoutWeight" column="workout_weight"/>
+		<result property="workoutDate" column="workout_date"/>
+	</resultMap>
+	
+	<select id="getWorkoutRecode" resultMap="workoutMap">
+	SELECT 
+    	e.*,b.workout_name,b.muscle_part FROM workout_recode e LEFT JOIN workout_list b ON e.user_id = b.user_id AND e.workout_no = b.workout_no 
+    	WHERE e.user_id = #{userId} AND e.workout_date = #{selectedDate}
+    	ORDER BY e.workout_no ASC,e.workout_recode_add_no ASC,e.workout_round_no ASC
+	</select>
+	
+	
+	
+</mapper>

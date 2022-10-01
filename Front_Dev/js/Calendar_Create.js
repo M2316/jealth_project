@@ -119,19 +119,21 @@ function click_calendar_date(e){
   }
   e.querySelector('.date_inner').style = 'border:1px solid black; width:30px; text-align:center ; border-radius:4px';
   try{
-      document.querySelector('.year-month').innerHTML = top_date.substring(0,top_date.indexOf(' ',top_date.indexOf(' ')+1)) + ' ' + e.querySelector('.this').innerHTML+'일';
-  } catch{
+    document.querySelector('.year-month').innerHTML = top_date.substring(0,top_date.indexOf(' ',top_date.indexOf(' ')+1)) + ' ' + e.querySelector('.this').innerHTML+'일';
+  } catch(err){
       return;
   }
+  
+  console.log(document.querySelector('.year-month').innerHTML);
+  console.log(top_date.substring(0,top_date.indexOf(' ',top_date.indexOf(' ')+1)) + e.querySelector('.this').innerHTML);
 
-  console.log(document.querySelector('.year-month').innerHTML)
+
+  
+  // 년 : top_date.substring(0,top_date.indexOf('년'))
+  // 월 : top_date.substring(top_date.indexOf(' ')+1,top_date.indexOf('월'))
+  // 일 : e.querySelector('.this').innerHTML
   
 }
 
-
-
-// document.querySelector('.date').addEventListener('click',function(){
-//   console.log('chacnge 이벤트 발생');
-// })
 
 

@@ -684,31 +684,33 @@ document.body.addEventListener('dblclick',function(){
                 let workout_name = $checked_box[i].parentElement.parentElement.querySelector('.col-9 span').innerHTML;
                 const $dom = document.createElement('div');
                 $dom.classList.add('container','workout-item','width_value');
-                $dom.innerHTML = `   <div class="row workout-del-btn">
-                    <div class="col-9"></div>
-                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
-                </div>
-                                    <div class="row workout-name">
-                                        <strong>${workout_name}</strong>
-                                    </div>
-                                    <div class="row workout_recode_wrap">
-                                        <div class="row workout-list-wrap">
-                                            <div class="col-6 workout_recode_box">
-                                                <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
-                                            </div>
-                                            <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                                                <span class="workout_recode">0</span>
-                                                <strong>Kg</strong>
-                                                <strong> X </strong>
-                                                <span class="workout_recode">0</span>
-                                                <strong>회</strong>
+                $dom.innerHTML = `   <div class="workout_recode_void">
+                    <div class="row workout-del-btn">
+                        <div class="col-9"></div>
+                        <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
+                    </div>
+                                        <div class="row workout-name">
+                                            <strong>${workout_name}</strong>
+                                        </div>
+                                        <div class="row workout_recode_wrap">
+                                            <div class="row workout-list-wrap">
+                                                <div class="col-6 workout_recode_box">
+                                                    <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
+                                                </div>
+                                                <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
+                                                    <span class="workout_recode">0</span>
+                                                    <strong>Kg</strong>
+                                                    <strong> X </strong>
+                                                    <span class="workout_recode">0</span>
+                                                    <strong>회</strong>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="add_del_box row">
-                                        <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
-                                        <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
-                                    </div>`;
+                                        <div class="add_del_box row">
+                                            <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
+                                            <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
+                                        </div>
+                </div>`;
                 
                 document.querySelector('.workout-recode-wrap .workout-item-wrap').appendChild($dom);
                 $checked_box[i].checked = false;

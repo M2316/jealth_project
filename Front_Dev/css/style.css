@@ -542,3 +542,9 @@ body{
   background: var(--font_color1);
   color:white;
 }
+
+
+/* selected Color */
+.selected_element *{
+  color: red;
+}

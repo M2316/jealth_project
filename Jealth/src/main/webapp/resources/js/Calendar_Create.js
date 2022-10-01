@@ -75,6 +75,7 @@ const renderCalendar = () => {
     for (let date of document.querySelectorAll('.this')) {
       if (+date.innerText === today.getDate()) {
         date.classList.add('today');
+        document.querySelector('.today').parentElement.style = 'border:1px solid black; width:30px; text-align:center ; border-radius:4px';
         break;
       }
     }
@@ -118,10 +119,41 @@ function click_calendar_date(e){
   }
   e.querySelector('.date_inner').style = 'border:1px solid black; width:30px; text-align:center ; border-radius:4px';
   try{
-      document.querySelector('.year-month').innerHTML = top_date.substring(0,top_date.indexOf(' ',top_date.indexOf(' ')+1)) + ' ' + e.querySelector('.this').innerHTML+'일';
-  } catch{
+    document.querySelector('.year-month').innerHTML = top_date.substring(0,top_date.indexOf(' ',top_date.indexOf(' ')+1)) + ' ' + e.querySelector('.this').innerHTML+'일';
+  } catch(err){
       return;
   }
+  
+  
+  
+    
+  //날짜 길이 통일해 주는 변수(8)
+  let selectedDate = top_date.substring(0,top_date.indexOf('년'))+(top_date.substring(top_date.indexOf(' ')+1,top_date.indexOf('월')) <= 9 ? '0'+top_date.substring(top_date.indexOf(' ')+1,top_date.indexOf('월')):top_date.substring(top_date.indexOf(' ')+1,top_date.indexOf('월')))+(e.querySelector('.this').innerHTML <= 9  ? '0'+e.querySelector('.this').innerHTML : e.querySelector('.this').innerHTML);
+  console.log("선택 날짜 : "+selectedDate);
+//  
+//   년 : top_date.substring(0,top_date.indexOf('년'))
+//   월 : top_date.substring(top_date.indexOf(' ')+1,top_date.indexOf('월'))
+//   일 : e.querySelector('.this').innerHTML
+	$.ajax({ // ajax 시작
+		type:'get',
+		url:'/app/getWorkoutRecode/'+selectedDate,
+		dataType:'text',
+		success:function(result){
+			console.log(result + "통신 성공~!")
+			workout_recode_expressing(result);
+		},error:function(result){
+			alert('서버와 통신 오류! 관리자에게 문의해 주세요~~!');
+		}
+	}); // ajax 끝
+  
+//  $.getJSON(
+//	`${pageContext.request.contextPath}/app/getWorkoutRecode/${selected_date}`,
+//	function(result){
+//		console.log(result);
+//	}
+//  );
+  
 }
+
 
 
