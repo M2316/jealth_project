@@ -263,7 +263,7 @@ body{
   margin: 0 auto;
 }
 
-.workout-item{
+.workout_recode_void{
   border-bottom: 2px solid var(--font_color1); 
   padding:20px
 }
@@ -547,4 +547,10 @@ body{
 /* selected Color */
 .selected_element *{
   color: red;
+}
+.selected_date{
+	border:1px solid black; 
+	width:30px; 
+	text-align:center ; 
+	border-radius:4px;
 }

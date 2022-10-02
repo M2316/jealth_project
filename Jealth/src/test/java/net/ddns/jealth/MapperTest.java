@@ -1,6 +1,8 @@
 package net.ddns.jealth;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -82,5 +84,41 @@ public class MapperTest {
 		}
 	}
 	
+	@Test
+	public void testmathod() {
+		/*
+		 * String newWorkoutList =
+		 * "[{\"workoutNo\":6,\"workoutName\":\"what's your workout name?\",\"muscle_part\":\"가슴\",\"workout_create_date\":\"20221003\"},{\"workoutNo\":6,\"workoutName\":\"what's your workout name?\",\"muscle_part\":\"가슴\",\"workout_create_date\":\"20221003\"},{\"workoutNo\":6,\"workoutName\":\"what's your workout name?\",\"muscle_part\":\"가슴\",\"workout_create_date\":\"20221003\"},{\"workoutNo\":6,\"workoutName\":\"what's your workout name?\",\"muscle_part\":\"가슴\",\"workout_create_date\":\"20221003\"}]"
+		 * ; newWorkoutList = newWorkoutList.substring(1, newWorkoutList.length()-1);
+		 * System.out.println(newWorkoutList);
+		 * 
+		 * System.out.println(a.length); for(int i=0;i<a.length;i++) {
+		 * System.out.println(a[i]); System.out.println(a[i].length()); }
+		 */
+		
+		   //1. Json 문자열
+        String strJson = "{\"userId\":\"sim\", "
+                        + "\"userPw\":\"simpw\","
+                        + "\"userInfo\":{"
+                            + "\"age\":50,"
+                            + "\"sex\":\"male\""
+                            + "}"
+                        + "}";
+        
+        //2. Parser
+        jacKSON jsonParser = new JSONParser();
+        
+        //3. To Object
+        Object obj = jsonParser.parse(strJson);
+        
+        //4. To JsonObject
+        JSONObject jsonObj = (JSONObject) obj;
+        
+        //print
+        System.out.println(jsonObj.get("userId")); //sim
+        System.out.println(jsonObj.get("userPw")); //simpw
+        System.out.println(jsonObj.get("userInfo")); // {"sex":"male","age":50}
+ 
+	}
 	
 }

@@ -24,5 +24,10 @@
 	</select>
 	
 	
+	<select id="getWorkoutlist" resultMap="workoutMap">
+	SELECT workout_no, workout_name,muscle_part FROM workout_list WHERE user_id =  #{userId}
+	
+	</select>
+	
 	
 </mapper>

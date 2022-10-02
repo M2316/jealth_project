@@ -19,5 +19,11 @@ public class WorkoutService implements IWorkoutService {
 		
 		return mapper.getWorkoutRecode(selectedDate, userId);
 	}
-
+	
+	
+	@Override
+	public List<WorkoutVO> getWorkoutlist(String userId) {
+		
+		return mapper.getWorkoutlist(userId);
+	}
 }

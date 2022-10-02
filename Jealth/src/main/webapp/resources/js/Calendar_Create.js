@@ -112,19 +112,22 @@ document.querySelector("#header_box").addEventListener("click",function(e){
 
 
 function click_calendar_date(e){
+  if(document.querySelector('.selected_date') !== null){
+	  document.querySelector('.selected_date').classList.remove('selected_date');
+  }
   let v = document.querySelectorAll('.date');
   let top_date = document.querySelector('.year-month').innerHTML;
   for(let i=0; i<v.length; i++){
       document.querySelectorAll('.date_inner')[i].style = 'border:none width:30px; text-align:center ;';
   }
-  e.querySelector('.date_inner').style = 'border:1px solid black; width:30px; text-align:center ; border-radius:4px';
+  e.children[0].classList.add('selected_date')
   try{
     document.querySelector('.year-month').innerHTML = top_date.substring(0,top_date.indexOf(' ',top_date.indexOf(' ')+1)) + ' ' + e.querySelector('.this').innerHTML+'일';
   } catch(err){
       return;
   }
   
-  
+
   
     
   //날짜 길이 통일해 주는 변수(8)

@@ -1,6 +1,8 @@
 package net.ddns.jealth.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -55,6 +59,27 @@ public class WorkoutController {
 			
 		}
 		return workoutList;
+	}
+	
+	@ResponseBody
+	@GetMapping("/getWorkoutlist")
+	public List<WorkoutVO> getWorkoutlist(HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		String userId = ((UserVO)session.getAttribute("userInfo")).getUserId();
+		List<WorkoutVO> workoutList = service.getWorkoutlist(userId);
+		
+		return workoutList;
+	}
+	
+	@ResponseBody
+	@PostMapping("/insertWorkoutList")
+	public void insertWorkoutList(@RequestBody String newWorkoutList) {
+		System.out.println("inserWorkoutList  실행 : "+newWorkoutList);
+		
+		
+		
+		
 	}
 
 }

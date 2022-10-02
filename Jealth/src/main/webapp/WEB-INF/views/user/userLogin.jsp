@@ -194,7 +194,7 @@
 	            </div>
            	</form>
         </div>
-        <div class="other_lognbox_header">
+     <%--    <div class="other_lognbox_header">
             <p>다른 방법으로 로그인</p>
         </div>
         <div class="other_loginbox">
@@ -209,7 +209,7 @@
                     <img src="${pageContext.request.contextPath}/resources/imgs/google.png" alt="google_logo">
                 </div>
             </div>
-        </div>
+        </div> --%>
         <div class="create_user">
             <a href="/user/userJoin" style="color:black;">회원가입</a>
         </div>

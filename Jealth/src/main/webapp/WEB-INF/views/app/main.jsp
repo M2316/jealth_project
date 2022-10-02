@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+
 <!DOCTYPE html>
 <html lang="ko">
+<head>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+	<meta name="_csrf" th:content="${_csrf.token}">
+</head>
 <body oncontextmenu="return false" onselectstart="return false">
 <div id="main_wrap" class="">
 
@@ -89,17 +94,12 @@
 
 
 
-            <div class="workout_bundle width_value">
+            <div class="workout_bundle width_value" name="가슴">
                 <div class="workout_target_muscle row">
                     <div class="workout_target_muscle_name col-8"><span>가슴</span><img src=""></img></div>
                     <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
                 </div>
                 <div class="workout_title_box">
-                    <div class="workout_title row">
-                        <div class="col-2"><input type="checkbox"><img class="display_none" src="${pageContext.request.contextPath}/resources/imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
-                        <div class="col-9"><span>[목록편집] 버튼으로 운동 추가</span></div>
-                        <div class="col-1 display_none"><img class="openModalBtn" src="${pageContext.request.contextPath}/resources/imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
-                    </div>
                 </div>
             </div>
 
@@ -109,7 +109,7 @@
 
 
 
-            <div class="workout_bundle width_value">
+            <div class="workout_bundle width_value" name="어깨">
                 <div class="workout_target_muscle row">
                     <div class="workout_target_muscle_name col-8"><span>어깨</span><img src=""></img></div>
                     <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
@@ -123,7 +123,7 @@
 
 
 
-            <div class="workout_bundle width_value">
+            <div class="workout_bundle width_value" name="팔">
                 <div class="workout_target_muscle row">
                     <div class="workout_target_muscle_name col-8"><span>팔</span><img src=""></img></div>
                     <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
@@ -138,7 +138,7 @@
 
 
 
-            <div class="workout_bundle width_value">
+            <div class="workout_bundle width_value" name="등">
                 <div class="workout_target_muscle row">
                     <div class="workout_target_muscle_name col-8"><span>등</span><img src=""></img></div>
                     <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
@@ -153,7 +153,7 @@
 
 
 
-            <div class="workout_bundle width_value">
+            <div class="workout_bundle width_value" name="코어">
                 <div class="workout_target_muscle row">
                     <div class="workout_target_muscle_name col-8"><span>코어</span><img src=""></img></div>
                     <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
@@ -168,7 +168,7 @@
 
 
 
-            <div class="workout_bundle width_value">
+            <div class="workout_bundle width_value" name="하체">
                 <div class="workout_target_muscle row">
                     <div class="workout_target_muscle_name col-8"><span>하체</span><img src=""></img></div>
                     <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
@@ -183,7 +183,7 @@
 
 
 
-            <div class="workout_bundle width_value">
+            <div class="workout_bundle width_value" name="기타">
                 <div class="workout_target_muscle row">
                     <div class="workout_target_muscle_name col-8"><span>기타</span><img src=""></img></div>
                     <div class="workout_add_del_btn col-4 display_none"><span name="addBtn"style="cursor: pointer;">추가</span><span name="delBtn" style="cursor: pointer;">삭제</span></div>
@@ -227,23 +227,37 @@
  
 
 <script>
-
-
+//security를 이용하여 post ajax 통신을 위해 필요한 변수들
+let header = $("meta[name='_csrf_header']").attr('th:content');
+let token = $("meta[name='_csrf']").attr('th:content');    
 
 //더블클릭 무시
 document.body.addEventListener('dblclick',function(){
     return;
 })
 
-
-
+click_calendar_date(document.querySelector('.today').parentElement.parentElement);
+//운동목록 창을 열고 main 창은 닫아주는 이벤트
     function display_toggle(){
         document.querySelector('#workout_list_wrap').classList.toggle('display_none');
         document.querySelector('#main_wrap').classList.toggle('display_none');
+        document.querySelector('#choose_count').innerHTML = 0;
+        //열었을때 AJAX로 운동목록 가져오는 코드
+		$.ajax({ // ajax 시작
+			type:'get',
+			url:'/app/getWorkoutlist/',
+			dataType:'text',
+			success:function(result){
+				console.log(result + "/app/getWorkoutlist/ 통신 성공~!");
+				workout_list_expressing(result);
+			},error:function(result){
+				alert('서버와 통신 오류! 관리자에게 문의해 주세요~~!');
+			}
+		}); // ajax 끝
     }
-    document.querySelector('#workout_list_open_btn').addEventListener('click',function(){
-        display_toggle();
-    })
+    $('#workout_list_open_btn').on('click',display_toggle);
+    
+   
     document.querySelector('#close_workout_list').addEventListener('click',function(e){
         try{    //편집모드에서 뒤로가기 눌렀을 때 저장 여부 확인하기 위한 코드
             if(e.target.parentElement.parentElement.querySelector('#workout_save_btn').innerHTML === '목록저장'){
@@ -469,6 +483,15 @@ document.body.addEventListener('dblclick',function(){
 
     $(function(){//JQuery 시작
     	
+    	//security 토큰 인증 절차
+		$.ajaxPrefilter(function(options, originalOptions, xhr){
+			if (options['type'].toLowerCase() === "post") {
+				xhr.setRequestHeader(header,token);
+			  }else{
+		  }
+		});    	
+    	
+    	
     	
     	
         //input 창 마스크 셋팅
@@ -499,10 +522,11 @@ document.body.addEventListener('dblclick',function(){
 
 
 
-        // 운동 선택 창 편집모드에서 추가
+        // 운동 선택 창 편집모드에서 운동목록 추가
         $('.workout_add_del_btn span[name="addBtn"]').on('click',function(e){
             console.log('addBtn 이벤트 실행')
             $mdom = document.createElement('div');
+            $mdom.setAttribute('name','new')
             $mdom.classList.add('workout_title','row');
             $mdom.innerHTML =
             `
@@ -522,11 +546,15 @@ document.body.addEventListener('dblclick',function(){
             e.target.parentElement.parentElement.parentElement.querySelector('.workout_title_box').removeChild($dom)
         });
         
+        
+        
+        
+        
     }); // JQuery 끝
 
     
     let choose_count = 0;
-
+   	
 
     //체크박스를 감싸고 있는 .workout_title 을 클릭해도 체크 되는 이벤트
     function workout_title_checked_of_tag_selected(e){
@@ -594,6 +622,19 @@ document.body.addEventListener('dblclick',function(){
 
     //변경한 목록을 저장합니다.
     function workout_save_btn(){
+       	let newWorkoutList = [];
+
+       	const workoutLength = document.querySelectorAll('.workout_title[name="saved"]').length; //운동 목록 갯수를 저장하는 변수
+       	const date = new Date();
+       	/* 
+       	date.getFullYear()
+       	date.getDay()
+       	 */
+       	const nowMonth = date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) :date.getMonth()+1;
+       	const nowDate = date.getDate() < 10 ? "0"+date.getDate() :date.getDate();
+       	
+       	const today = date.getFullYear()+""+nowMonth+""+nowDate;
+       	
         toggle_attribute_fn();
         //버튼을 다시 편집모드로 변경해 준다
         document.querySelector('#workout_save_btn').removeEventListener('click',workout_save_btn);
@@ -603,12 +644,48 @@ document.body.addEventListener('dblclick',function(){
         
         if(confirm('저장하시겠습니까?')){
             
-            
-            
+        	let $dom = document.querySelectorAll('.workout_title_box .workout_title[name="new"]');
+        	for(let i=0; i<$dom.length; i++){
+        		const name = document.querySelectorAll('.workout_title[name="new"] .col-9 span')[i].innerHTML;
+        		const musclePart = document.querySelectorAll('.workout_title[name="new"] .col-9 span')[i].parentElement.parentElement.parentElement.parentElement.querySelector('.workout_target_muscle_name span').innerHTML;
+        		let newWorkout = {
+        			'workoutNo':workoutLength+1,
+        			'workoutName':name,
+        			'muscle_part':musclePart,
+        			'workout_create_date':today
+        			};
+        		newWorkoutList[i] = newWorkout;
+        	}
+         	let strNewWorkoutList = JSON.stringify(newWorkoutList)
+        	console.log(strNewWorkoutList);
+        	
+        	
+
+			
+			
+        	$.ajax({ // ajax 시작
+				type: 'post',
+				url: '<c:url value="/app/insertWorkoutList" />',
+				data: strNewWorkoutList, //폼 데이터 객체를 넘깁니다.
+				contentType: 'application/json', //ajax 방식에서 파일을 넘길 때는 반드시 false로 처리 -> "multipart/form-data"로 선언됨.
+				
+				success: function(result) {
+					main_page_refresh(result);
+				},
+				error: function(request, status, error) {
+					alert('서버와 통신 오류! 관리자에게 문의해 주세요~~!');
+					
+				}
+        	}); // ajax 끝
+        	
+        	
         }
-        
     }
 
+    /* 토크인증 시도 */
+    $(function(){
+
+    });
     //목록 편집모드로 변경되는 이벤트
     function workout_modify_btn(){
         toggle_attribute_fn();
@@ -634,38 +711,40 @@ document.body.addEventListener('dblclick',function(){
         const $checked_box = document.querySelectorAll('.workout_title input[type="checkbox"]');
         for(let i=0; i < $checked_box.length; i++){
             if($checked_box[i].checked){
-                let workout_name = $checked_box[i].parentElement.parentElement.querySelector('.col-9 span').innerHTML;
-                const $dom = document.createElement('div');
-                $dom.classList.add('container','workout-item','width_value');
-                $dom.innerHTML = `   <div class="workout_recode_void">
-                    <div class="row workout-del-btn">
-                    <div class="col-9"></div>
-                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="${pageContext.request.contextPath}/resources/imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
-                </div>
-                                    <div class="row workout-name">
-                                        <strong>`+workout_name+`</strong>
-                                    </div>
-                                    <div class="row workout_recode_wrap">
-                                        <div class="row workout-list-wrap">
-                                            <div class="col-6 workout_recode_box">
-                                                <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
-                                            </div>
-                                            <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                                                <span class="workout_recode">0</span>
-                                                <strong>Kg</strong>
-                                                <strong> X </strong>
-                                                <span class="workout_recode">0</span>
-                                                <strong>회</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="add_del_box row">
-                                        <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
-                                        <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
-                                    </div>
-            </div>`;
-                
-                document.querySelector('.workout-recode-wrap .workout-item-wrap').appendChild($dom);
+            	
+            	let workout_name = $checked_box[i].parentElement.parentElement.querySelector('.col-9 span').innerHTML;
+            	const $dom = document.createElement('div');
+            	$dom.classList.add('workout_recode_void');
+            	$dom.innerHTML =
+            		`
+            		<div class="row workout-del-btn">
+	                    <div class="col-9"></div>
+	                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="${pageContext.request.contextPath}/resources/imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
+                	</div>
+                    <div class="row workout-name">
+                        <strong>`+workout_name+`</strong>
+                    </div>
+                    <div class="row workout_recode_wrap">
+                        <div class="row workout-list-wrap">
+                            <div class="col-6 workout_recode_box">
+                                <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
+                            </div>
+                            <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
+                                <span class="workout_recode">0</span>
+                                <strong>Kg</strong>
+                                <strong> X </strong>
+                                <span class="workout_recode">0</span>
+                                <strong>회</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add_del_box row">
+                        <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
+                        <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
+                    </div>
+            		`;
+            		
+            	document.querySelector('.workout-item').appendChild($dom);
                 $checked_box[i].checked = false;
             }
             choose_count = 0;
@@ -695,9 +774,20 @@ document.body.addEventListener('dblclick',function(){
 
 
 //========================================//
-//============= 운동선택창 ===============//   
+//============= 운동선택창 끝 ===============//   
 //========================================//
-    
+
+
+
+
+
+
+
+
+
+//========================================//
+//========= AJAX 통신후 실행되는 이벤트=========//   
+//========================================//
     
 /* 
 	받아온 데이터로 운동 레코드 뿌려주기 
@@ -707,7 +797,7 @@ document.body.addEventListener('dblclick',function(){
 		const jsonData = JSON.parse(data);
 		let list_no = 1;
         const $workoutItem = document.createElement('div');
-        $workoutItem.classList.add('container','workout-item','width_value');
+        $workoutItem.classList.add('workout-item');
         
         
 		for(let i=0;i<jsonData.length;i++){
@@ -780,6 +870,59 @@ document.body.addEventListener('dblclick',function(){
         $('.workout-del-btn .col-3').on('click',recode_list_del); //레코드 번들 삭제 이벤트
         $('.workout_recode_count').on('click',workout_recode_count_open);
 	}
+	
+	/* 
+		받아온 운동 리스트 목록을 뿌려줌
+	*/
+	function workout_list_expressing(data){
+		
+		
+			//운동목록을 추가한 적이 없으면 가이드 목록으로 넘어갈 수 있도록 해줌
+		if(data.length === 0){
+			const $temporaryDom = document.createElement('div');
+			$temporaryDom.classList.add('workout_title','row');
+			$temporaryDom.setAttribute('name','new')
+			$temporaryDom.innerHTML += `
+	                <div class="col-2"><input type="checkbox"><img class="display_none" src="${pageContext.request.contextPath}/resources/imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
+	                <div class="col-9"><span>[목록편집] 버튼으로 운동 추가</span></div>
+	                <div class="col-1 display_none"><img class="openModalBtn" src="${pageContext.request.contextPath}/resources/imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
+				`;
+			document.querySelector('.workout_bundle[name="가슴"]').querySelector('.workout_title_box').append($temporaryDom);
+			console.log('null')
+		}else{
+			const jsonData = JSON.parse(data);
+			for(let i=0; i<jsonData.length; i++){
+				console.log('muscle : ' + jsonData[i].musclePart);
+				
+				const $temporaryDom = document.createElement('div');
+				$temporaryDom.classList.add('workout_title','row');
+				$temporaryDom.setAttribute('name','saved')
+				$temporaryDom.innerHTML += `
+	                
+		                <div class="col-2"><input type="checkbox"><img class="display_none" src="${pageContext.request.contextPath}/resources/imgs/delete.png" alt="" style="width:25px;height:25px;margin: 7.5px; cursor: pointer;"></div>
+		                <div class="col-9"><span>`+jsonData[i].workoutName+`</span></div>
+		                <div class="col-1 display_none"><img class="openModalBtn" src="${pageContext.request.contextPath}/resources/imgs/pen_create.png" style="width:20px;height:20px;margin: 10px 5px; cursor: pointer;"></div>
+				`;
+				document.querySelector('.workout_bundle[name='+jsonData[i].musclePart+']').querySelector('.workout_title_box').append($temporaryDom);
+			}
+		}
+		
+		
+	}
+	
+	
+	
+	/* 
+	운동 리스트 insert
+	 */
+	function main_page_refresh(data){
+		location.href = '/app/main';
+		
+	}
+	 
+	//========================================//
+	//======== AJAX 통신후 실행되는 이벤트 끝========//   
+	//========================================//
 </script>
 
 
