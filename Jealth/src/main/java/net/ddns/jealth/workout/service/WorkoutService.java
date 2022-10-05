@@ -1,6 +1,7 @@
 package net.ddns.jealth.workout.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,22 @@ public class WorkoutService implements IWorkoutService {
 	public List<WorkoutVO> getWorkoutlist(String userId) {
 		
 		return mapper.getWorkoutlist(userId);
+	}
+	
+	@Override
+	public void workoutListInsert(WorkoutVO workout) {
+		mapper.workoutListInsert(workout);
+	}
+	
+	
+	@Override
+	public void workoutListUpdate(WorkoutVO workout) {
+		mapper.workoutListUpdate(workout);	
+	}
+	
+	
+	@Override
+	public void workoutListDelete(WorkoutVO workout) {
+		mapper.workoutListDelete(workout);
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import net.ddns.jealth.mapper.IUserMapper;
 import net.ddns.jealth.mapper.IWorkoutMapper;
 import net.ddns.jealth.model.UserVO;
 import net.ddns.jealth.model.WorkoutVO;
+import net.ddns.jealth.util.OtherCustomMethods;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -30,7 +36,7 @@ public class MapperTest {
 	private PasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@Test
-	public void inserTest() {
+	public void userInserTest() {
 		UserVO vo = new UserVO();
 		vo.setUserId("test");
 		vo.setUserPw(encoder.encode("qwerqwer"));
@@ -78,47 +84,31 @@ public class MapperTest {
 	}
 	@Test
 	public void getWorkoutList() {
-		List<WorkoutVO> vo = workoutMapper.getWorkoutRecode("qwe123","1"); 
+		List<WorkoutVO> vo = workoutMapper.getWorkoutRecode(20221003,"qwe123"); 
 		for(WorkoutVO e : vo) {
 			System.out.println(e);
 		}
 	}
 	
 	@Test
-	public void testmathod() {
-		/*
-		 * String newWorkoutList =
-		 * "[{\"workoutNo\":6,\"workoutName\":\"what's your workout name?\",\"muscle_part\":\"가슴\",\"workout_create_date\":\"20221003\"},{\"workoutNo\":6,\"workoutName\":\"what's your workout name?\",\"muscle_part\":\"가슴\",\"workout_create_date\":\"20221003\"},{\"workoutNo\":6,\"workoutName\":\"what's your workout name?\",\"muscle_part\":\"가슴\",\"workout_create_date\":\"20221003\"},{\"workoutNo\":6,\"workoutName\":\"what's your workout name?\",\"muscle_part\":\"가슴\",\"workout_create_date\":\"20221003\"}]"
-		 * ; newWorkoutList = newWorkoutList.substring(1, newWorkoutList.length()-1);
-		 * System.out.println(newWorkoutList);
-		 * 
-		 * System.out.println(a.length); for(int i=0;i<a.length;i++) {
-		 * System.out.println(a[i]); System.out.println(a[i].length()); }
-		 */
+	public void testmathod() throws JsonMappingException, JsonProcessingException {
 		
-		   //1. Json 문자열
-        String strJson = "{\"userId\":\"sim\", "
-                        + "\"userPw\":\"simpw\","
-                        + "\"userInfo\":{"
-                            + "\"age\":50,"
-                            + "\"sex\":\"male\""
-                            + "}"
-                        + "}";
-        
-        //2. Parser
-        jacKSON jsonParser = new JSONParser();
-        
-        //3. To Object
-        Object obj = jsonParser.parse(strJson);
-        
-        //4. To JsonObject
-        JSONObject jsonObj = (JSONObject) obj;
-        
-        //print
-        System.out.println(jsonObj.get("userId")); //sim
-        System.out.println(jsonObj.get("userPw")); //simpw
-        System.out.println(jsonObj.get("userInfo")); // {"sex":"male","age":50}
- 
+		
+		
+		String newWorkoutList = "[{\"workoutNo\":\"1\",\"workoutName\":\"what's your workout name?\",\"musclePart\":\"가슴\",\"workoutCreateDate\":\"20221003\"},{\"workoutNo\":\"1\",\"workoutName\":\"what's your workout name?\",\"musclePart\":\"가슴\",\"workoutCreateDate\":\"20221003\"},{\"workoutNo\":\"1\",\"workoutName\":\"what's your workout name?\",\"musclePart\":\"가슴\",\"workoutCreateDate\":\"20221003\"}]";
+		OtherCustomMethods ocm = new OtherCustomMethods();
+		
+		ArrayList<String> arr = ocm.getStringToJsonlist(newWorkoutList);
+		ArrayList<Map<String, Object>> arrMap = ocm.getArrayListToMap(arr);
+		for(int i=0; i<arr.size(); i++) {
+			System.out.println(arrMap.get(i));
+			System.out.println(arrMap.get(i).get("workoutName").getClass().getName());
+		}
+		
 	}
-	
+	@Test
+	public void workoutInsertTest() {
+		WorkoutVO vo = new WorkoutVO();
+		workoutMapper.workoutListInsertTest(vo);
+	}
 }

@@ -142,7 +142,7 @@ function click_calendar_date(e){
 		url:'/app/getWorkoutRecode/'+selectedDate,
 		dataType:'text',
 		success:function(result){
-			console.log(result + "통신 성공~!")
+			console.log("통신 성공~!")
 			workout_recode_expressing(result);
 		},error:function(result){
 			alert('서버와 통신 오류! 관리자에게 문의해 주세요~~!');

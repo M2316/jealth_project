@@ -1,5 +1,6 @@
 package net.ddns.jealth.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.ddns.jealth.model.UserVO;
 import net.ddns.jealth.model.WorkoutVO;
+import net.ddns.jealth.util.OtherCustomMethods;
 import net.ddns.jealth.workout.service.IWorkoutService;
 
 @Controller
@@ -71,15 +73,73 @@ public class WorkoutController {
 		
 		return workoutList;
 	}
+//	
+//	@ResponseBody
+//	@PostMapping("/insertWorkoutList")
+//	public void insertWorkoutList(@RequestBody String newWorkoutList) {
+//		System.out.println("inserWorkoutList  실행 : "+newWorkoutList);
+//	}
 	
 	@ResponseBody
 	@PostMapping("/insertWorkoutList")
-	public void insertWorkoutList(@RequestBody String newWorkoutList) {
+	public void insertWorkoutList(@RequestBody String newWorkoutList, HttpServletRequest request) {
 		System.out.println("inserWorkoutList  실행 : "+newWorkoutList);
 		
-		
-		
-		
+		OtherCustomMethods ocm = new OtherCustomMethods();
+		HttpSession session = request.getSession();
+		String userId = ((UserVO)session.getAttribute("userInfo")).getUserId();
+		System.out.println("userID : "+userId);
+		ArrayList<Map<String, Object>> newWorkoutListArr = ocm.getStringToHashMap(newWorkoutList);
+		for(int i=0; i<newWorkoutListArr.size();i++) {
+			WorkoutVO workout = new WorkoutVO();
+			workout.setUserId(userId);
+			workout.setWorkoutNo(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutNo")));
+			workout.setWorkoutName((String)newWorkoutListArr.get(i).get("workoutName"));
+			workout.setMusclePart((String)newWorkoutListArr.get(i).get("musclePart"));
+			workout.setWorkoutCreateDate(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutCreateDate")));
+			service.workoutListInsert(workout);
+		}
 	}
-
+	
+	
+	@ResponseBody
+	@PostMapping("/updateWorkoutList")
+	public void updateWorkoutList(@RequestBody String updateWorkoutList,HttpServletRequest request) {
+		System.out.println("updateWorkoutList  실행 : "+updateWorkoutList);
+		
+		OtherCustomMethods ocm = new OtherCustomMethods();
+		HttpSession session = request.getSession();
+		String userId = ((UserVO)session.getAttribute("userInfo")).getUserId();
+		System.out.println("userID : "+userId);
+		ArrayList<Map<String, Object>> newWorkoutListArr = ocm.getStringToHashMap(updateWorkoutList);
+		for(int i=0; i<newWorkoutListArr.size();i++) {
+			WorkoutVO workout = new WorkoutVO();
+			workout.setUserId(userId);
+			workout.setWorkoutNo(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutNo")));
+			workout.setWorkoutName((String)newWorkoutListArr.get(i).get("workoutName"));
+			workout.setMusclePart((String)newWorkoutListArr.get(i).get("musclePart"));
+			workout.setWorkoutCreateDate(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutCreateDate")));
+			service.workoutListUpdate(workout);
+		}
+	}
+	@ResponseBody
+	@PostMapping("/deleteWorkoutList")
+	public void deleteWorkoutList(@RequestBody String deleteWorkoutList,HttpServletRequest request) {
+		System.out.println("deleteWorkoutList  실행 : "+deleteWorkoutList);
+		
+		OtherCustomMethods ocm = new OtherCustomMethods();
+		HttpSession session = request.getSession();
+		String userId = ((UserVO)session.getAttribute("userInfo")).getUserId();
+		System.out.println("userID : "+userId);
+		ArrayList<Map<String, Object>> newWorkoutListArr = ocm.getStringToHashMap(deleteWorkoutList);
+		for(int i=0; i<newWorkoutListArr.size();i++) {
+			WorkoutVO workout = new WorkoutVO();
+			workout.setUserId(userId);
+			workout.setWorkoutNo(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutNo")));
+			workout.setWorkoutName((String)newWorkoutListArr.get(i).get("workoutName"));
+			workout.setMusclePart((String)newWorkoutListArr.get(i).get("musclePart"));
+			workout.setWorkoutCreateDate(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutCreateDate")));
+			service.workoutListDelete(workout);
+		}
+	}
 }
