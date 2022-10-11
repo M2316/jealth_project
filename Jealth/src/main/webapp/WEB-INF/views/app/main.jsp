@@ -364,6 +364,9 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
             		"workout_weight":workoutWeight,
             		"workout_date":workoutDate
             }
+            
+            
+            
             return;
         }
     }
@@ -383,22 +386,19 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
     //운동 list 삭제
     //AJAX로 DELETE 처리 해줄것
     function recode_list_del(e){
-        
+        console.log('실행');
         let $target;
-        if(e.target.parentElement.parentElement.classList.value === 'container workout-item width_value'){
-            $target = e.target.parentElement.parentElement;
-        }else if(e.target.parentElement.parentElement.parentElement.classList.value === 'container workout-item width_value'){
-            $target = e.target.parentElement.parentElement.parentElement;
-        }else{
-            return;
+        if(e.target.tagName === 'DIV' && e.target.className === 'col-3'){
+        	$target = e.target.parentElement.parentElement;
+        }else if(e.target.tagName === 'IMG' && e.target.className === ''){
+        	$target = e.target.parentElement.parentElement.parentElement;
         }
-        console.log($target.classList.value === 'container workout-item width_value');
         $target.remove();
     }
 
     //잠금 해제 기능
     function recode_unlock_btn(){
-        let $recode = document.querySelectorAll('.workout-item');
+        let $recode = document.querySelectorAll('.workout-item .workout_recode_void');
         for(let i=0; i<$recode.length; i++){
             document.querySelectorAll('.workout-del-btn .col-3')[i].style = "display:disable";
             document.querySelectorAll('.add_del_box')[i].style = "display:disable";
@@ -419,7 +419,7 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
 
     //잠금 기능
     function recode_lock_btn(){
-        let $recode = document.querySelectorAll('.workout-item');
+        let $recode = document.querySelectorAll('.workout-item .workout_recode_void');
         for(let i=0; i<$recode.length; i++){
             document.querySelectorAll('.workout-del-btn .col-3')[i].style = "display:none";
             document.querySelectorAll('.add_del_box')[i].style = "display:none";
@@ -596,42 +596,51 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
         e.target.parentElement.parentElement.classList.add('display_none');
         e.target.parentElement.parentElement.setAttribute('name','delete');
     }
-    //체크박스를 감싸고 있는 .workout_title 을 클릭해도 체크 되는 이벤트
+    
+    //체크박스를 감싸고 있는 .workout_title 을 클릭해도 체크 되는 이벤트 + checkbox 선택시 발생되는 이벤트 들
     function workout_title_checked_of_tag_selected(e){
         //target 통일화
         if(e.target.tagName === 'SPAN'){//span 태그를 클릭시
-            e = e.target.parentElement.parentElement.querySelector('input[type="checkbox"]');
+            inputTag = e.target.parentElement.parentElement.querySelector('input[type="checkbox"]');
         }else if(e.target.className === 'col-9'){
-            e = e.target.parentElement.querySelector('input[type="checkbox"]');
+        	inputTag = e.target.parentElement.querySelector('input[type="checkbox"]');
         }else if(e.target.className === 'workout_title row' || e.target.className === 'col-2' || e.target.className === 'workout_title_box'){
-            e = e.target.querySelector('input[type="checkbox"]');
+        	inputTag = e.target.querySelector('input[type="checkbox"]');
         }else if(e.target.tagName === 'INPUT'){
-            e = e.target;
-            if(e.checked){
+        	inputTag = e.target;            
+            if(inputTag.checked){
                 choose_count ++;
                 document.getElementById('choose_count').innerHTML = choose_count;
-                return;
+                inputTag.setAttribute('data-add-order',choose_count-1);
+                /* return; */
             }else{
                 choose_count --;
+                inputTag.removeAttribute('data-add-order');
                 document.getElementById('choose_count').innerHTML = choose_count;
-                return;
+                /* return; */
             }
-        }else{
+        }else{ //입력된 곳이 위에 조건에 해당되지 않으면 이벤트 종료!
             return;
         }
 
         
-        if(e.checked){
-            e.checked = false;
-            choose_count --;
-            document.getElementById('choose_count').innerHTML = choose_count;
-            return;
-        }else{
-            e.checked = true;
-            choose_count ++;
-            document.getElementById('choose_count').innerHTML = choose_count;
-            return;
+        if(e.target.tagName !== 'INPUT'){
+            if(inputTag.checked){ //체크가 되어있다면 choose_count를 1 차감 시키고 data 속성을 삭제 함
+            	inputTag.checked = false;
+                choose_count --;
+                inputTag.removeAttribute('data-add-order');
+                document.getElementById('choose_count').innerHTML = choose_count;
+                return;
+            }else{ //체크가 되어있지 않으면 choose_count를 1 증가 시키고 data에 순서를 입력 함
+            	inputTag.checked = true;
+                choose_count ++;
+                inputTag.setAttribute('data-add-order',choose_count-1);
+                document.getElementById('choose_count').innerHTML = choose_count;
+                return;
+            }
         }
+        
+
 
     }
     
@@ -796,53 +805,71 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
     // 요소에 이벤트 등록!
     document.querySelector('#workout_modify_btn').addEventListener('click',workout_modify_btn);
 
-
+    //체크박스에 체크된 순서를 data속성으로 기록해주는 함수
+    function checkbox_checked_insert_nomber(e){
+    	
+    }
         
     //선택된 운동 목록들을 recode에 등록
         //AJAX로 UPDATE처리 해주기~
     function  selected_workout_list_add_in_recode(){
-        const $checked_box = document.querySelectorAll('.workout_title input[type="checkbox"]');
+        const $checked_box = document.querySelectorAll('.workout_title input[type="checkbox"]'); //체크되어 있는 항목을 리스트로 가져옴
+        let $checked_box_sorted = [];
+        //체크된 순서대로 workout_list에 뿌져주어야 하기 때문에 data-add-order 속성으로 정렬 해주기
         for(let i=0; i < $checked_box.length; i++){
-            if($checked_box[i].checked){
-            	
-            	let workout_name = $checked_box[i].parentElement.parentElement.querySelector('.col-9 span').innerHTML;
-            	const $dom = document.createElement('div');
-            	const workoutNo = document.querySelectorAll('.workout_title')[i].getAttribute('value');
-            	$dom.classList.add('workout_recode_void');
-            	$dom.innerHTML =
-            		`
-            		<div class="row workout-del-btn">
-	                    <div class="col-9"></div>
-	                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="${pageContext.request.contextPath}/resources/imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
-                	</div>
-                    <div class="row workout-name" value="`+workoutNo+`">
-                        <strong>`+workout_name+`</strong>
-                    </div>
-                    <div class="row workout_recode_wrap">
-                        <div class="row workout-list-wrap">
-                            <div class="col-6 workout_recode_box">
-                                <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
-                            </div>
-                            <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
-                                <span class="workout_recode">0</span>
-                                <strong>Kg</strong>
-                                <strong> X </strong>
-                                <span class="workout_recode">0</span>
-                                <strong>회</strong>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="add_del_box row">
-                        <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
-                        <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
-                    </div>
-            		`;
-            		
-            	document.querySelector('.workout-item').appendChild($dom);
-                $checked_box[i].checked = false;
-            }
+        	if(document.querySelector('.workout_title input[type="checkbox"][data-add-order="'+i+'"]') !== null){
+	        	$checked_box_sorted[i] = document.querySelector('.workout_title input[type="checkbox"][data-add-order="'+i+'"]');
+        	}
+        }
+        
+        
+        
+        for(let i=0; i < $checked_box_sorted.length; i++){
+           	let workout_name = document.querySelector('.workout_title input[type="checkbox"][data-add-order="'+i+'"]').parentElement.parentElement.querySelector('.col-9 span').innerHTML;
+           	const $dom = document.createElement('div');
+           	const workoutNo = document.querySelectorAll('.workout_title')[i].getAttribute('value');
+           	$dom.classList.add('workout_recode_void');
+           	$dom.innerHTML =
+           		`
+           		<div class="row workout-del-btn">
+                    <div class="col-9"></div>
+                    <div class="col-3" style="cursor: pointer; font-size: 12px; font-weight: 600; color: var(-font_color1); text-align: right;">DELETE<img src="${pageContext.request.contextPath}/resources/imgs/delete.png" alt="" style=" display:inline; width: 17px;"></div>
+               	</div>
+                   <div class="row workout-name" value="`+workoutNo+`">
+                       <strong>`+workout_name+`</strong>
+                   </div>
+                   <div class="row workout_recode_wrap">
+                       <div class="row workout-list-wrap">
+                           <div class="col-6 workout_recode_box">
+                               <input type="checkbox"> <span class="workout_recode" id="workout_recode_set_count">1</span><strong>세트</strong>
+                           </div>
+                           <div class="col-6 workout_recode_box workout_recode_count" style="cursor: pointer;">
+                               <span class="workout_recode">0</span>
+                               <strong>Kg</strong>
+                               <strong> X </strong>
+                               <span class="workout_recode">0</span>
+                               <strong>회</strong>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="add_del_box row">
+                       <div class="col-6 set_modify_btn"><span class="workout_recode_set_add" style="cursor: pointer;">+ 세트 추가</span></div>
+                       <div class="col-6 set_modify_btn"><span class="workout_recode_set_del"style="cursor: pointer;">- 세트 삭제</span></div>
+                   </div>
+           		`;
+           		
+           	document.querySelector('.workout-item').appendChild($dom);
+            $checked_box_sorted[i].checked = false;
+            
             choose_count = 0;
             document.querySelector('.workout_list_footer_item span').innerHTML = '0';//0개 운동 추가 로 다시 바꿔줌
+            //json배열 data로 만들어서 한번에 서버와 통신하기위한 작업 
+        	let insertWorkout = {
+        			'workout_no':1,
+        			'workout_recode_add_no':1,
+        			'user_id':1,
+        			'workout_round_no':1
+        			};
         }
         //체크 했던 항목을 체크 해제 상태로 변경함
         display_toggle();
@@ -855,6 +882,7 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
         $('.workout_recode_set_del').on('click',workout_recode_set_del);//레코드 삭제 이벤트
         $('.workout-del-btn .col-3').on('click',recode_list_del); //레코드 번들 삭제 이벤트
         $('.workout_recode_count').on('click',workout_recode_count_open);
+        
     }
     
 
