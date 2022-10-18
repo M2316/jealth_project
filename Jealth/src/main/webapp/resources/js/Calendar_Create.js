@@ -21,10 +21,10 @@ const goToday = () => {
 
 const renderCalendar = () => {
   const viewYear = date.getFullYear();
-  const viewMonth = date.getMonth();
-
+  const viewMonth = date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1):(date.getMonth()+1);
+  const viewDate = date.getDate() < 10 ? '0'+(date.getDate()):(date.getDate());
   // year-month 채우기
-  document.querySelector('.year-month').textContent = `${viewYear}년 ${viewMonth + 1}월 ${date.getDate()}일`;
+  document.querySelector('.year-month').textContent = `${viewYear}년 ${viewMonth}월 ${viewDate}일`;
 
   // 지난 달 마지막 Date, 이번 달 마지막 Date
   const prevLast = new Date(viewYear, viewMonth, 0);
@@ -71,7 +71,7 @@ const renderCalendar = () => {
   document.querySelector('.dates').innerHTML = dates.join('');
   // 오늘 날짜 그리기
   const today = new Date();
-  if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
+  if (viewMonth === (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1):(date.getMonth()+1)) && viewYear === today.getFullYear()) {
     for (let date of document.querySelectorAll('.this')) {
       if (+date.innerText === today.getDate()) {
         date.classList.add('today');
@@ -122,7 +122,7 @@ function click_calendar_date(e){
   }
   e.children[0].classList.add('selected_date')
   try{
-    document.querySelector('.year-month').innerHTML = top_date.substring(0,top_date.indexOf(' ',top_date.indexOf(' ')+1)) + ' ' + e.querySelector('.this').innerHTML+'일';
+    document.querySelector('.year-month').innerHTML = top_date.substring(0,top_date.indexOf(' ',top_date.indexOf(' ')+1)) + ' ' + (e.querySelector('.this').innerHTML < 10 ? '0'+e.querySelector('.this').innerHTML : e.querySelector('.this').innerHTML)+'일';
   } catch(err){
       return;
   }

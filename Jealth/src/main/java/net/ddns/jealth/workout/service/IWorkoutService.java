@@ -22,5 +22,11 @@ public interface IWorkoutService {
 	
 	//운동 목록 삭제 요청
 	void workoutListDelete(WorkoutVO workout);
+
+	//운동 기록 추가 요청
+	void workoutRecodeInsert(WorkoutVO workout);
+
+	//운동 기록 삭제 요청
+	void workoutRecodeDelete(WorkoutVO workout);
 	
 }

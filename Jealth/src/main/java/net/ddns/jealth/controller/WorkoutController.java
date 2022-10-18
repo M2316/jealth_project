@@ -80,10 +80,12 @@ public class WorkoutController {
 //		System.out.println("inserWorkoutList  실행 : "+newWorkoutList);
 //	}
 	
+	
+	//운동 목록 추가 요청
 	@ResponseBody
 	@PostMapping("/insertWorkoutList")
 	public void insertWorkoutList(@RequestBody String newWorkoutList, HttpServletRequest request) {
-		System.out.println("inserWorkoutList  실행 : "+newWorkoutList);
+		System.out.println("WorkoutController/inserWorkoutList  실행 : "+newWorkoutList);
 		
 		OtherCustomMethods ocm = new OtherCustomMethods();
 		HttpSession session = request.getSession();
@@ -105,7 +107,7 @@ public class WorkoutController {
 	@ResponseBody
 	@PostMapping("/updateWorkoutList")
 	public void updateWorkoutList(@RequestBody String updateWorkoutList,HttpServletRequest request) {
-		System.out.println("updateWorkoutList  실행 : "+updateWorkoutList);
+		System.out.println("WorkoutController/updateWorkoutList  실행 : "+updateWorkoutList);
 		
 		OtherCustomMethods ocm = new OtherCustomMethods();
 		HttpSession session = request.getSession();
@@ -125,7 +127,7 @@ public class WorkoutController {
 	@ResponseBody
 	@PostMapping("/deleteWorkoutList")
 	public void deleteWorkoutList(@RequestBody String deleteWorkoutList,HttpServletRequest request) {
-		System.out.println("deleteWorkoutList  실행 : "+deleteWorkoutList);
+		System.out.println("WorkoutController/deleteWorkoutList  실행 : "+deleteWorkoutList);
 		
 		OtherCustomMethods ocm = new OtherCustomMethods();
 		HttpSession session = request.getSession();
@@ -142,4 +144,49 @@ public class WorkoutController {
 			service.workoutListDelete(workout);
 		}
 	}
+	@ResponseBody
+	@PostMapping("/insertWorkoutRecode")
+	public void insertWorkoutRecode(@RequestBody String workoutListJSON,HttpServletRequest request) {
+		System.out.println("WorkoutController/insertWorkoutRecode  실행 : "+workoutListJSON);
+		
+		OtherCustomMethods ocm = new OtherCustomMethods();
+		HttpSession session = request.getSession();
+		String userId = ((UserVO)session.getAttribute("userInfo")).getUserId();
+		System.out.println("userID : "+userId);
+		ArrayList<Map<String, Object>> newWorkoutListArr = ocm.getStringToHashMap(workoutListJSON);
+		for(int i=0; i<newWorkoutListArr.size();i++) {
+			System.out.println("i : "+newWorkoutListArr.get(i));
+			WorkoutVO workout = new WorkoutVO();
+			workout.setWorkoutNo(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutNo")));
+			workout.setWorkoutRecodeAddNo((int)newWorkoutListArr.get(i).get("workoutRecodeAddNo"));
+			workout.setUserId(userId);
+			workout.setWorkoutRoundNo((int)newWorkoutListArr.get(i).get("workoutRoundNo"));
+			workout.setWorkoutCount((int)newWorkoutListArr.get(i).get("workoutCount"));
+			workout.setWorkoutWeight((int)newWorkoutListArr.get(i).get("workoutWeight"));
+			workout.setWorkoutDate(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutDate")));
+			service.workoutRecodeInsert(workout);
+		}
+	}
+	@ResponseBody
+	@PostMapping("/deleteWorkoutRecode")
+	public void deleteWorkoutRecode(@RequestBody String workoutListJSON,HttpServletRequest request) {
+		System.out.println("WorkoutController/deleteWorkoutRecode  실행 : "+workoutListJSON);
+		
+		OtherCustomMethods ocm = new OtherCustomMethods();
+		HttpSession session = request.getSession();
+		String userId = ((UserVO)session.getAttribute("userInfo")).getUserId();
+		System.out.println("userID : "+userId);
+		ArrayList<Map<String, Object>> newWorkoutListArr = ocm.getStringToHashMap(workoutListJSON);
+		for(int i=0; i<newWorkoutListArr.size();i++) {
+			System.out.println("i : "+newWorkoutListArr.get(i));
+			WorkoutVO workout = new WorkoutVO();
+			workout.setWorkoutNo(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutNo")));
+			workout.setWorkoutRecodeAddNo((int)newWorkoutListArr.get(i).get("workoutRecodeAddNo"));
+			workout.setUserId(userId);
+			workout.setWorkoutRoundNo((int)newWorkoutListArr.get(i).get("workoutRoundNo"));
+			workout.setWorkoutDate(Integer.parseInt((String)newWorkoutListArr.get(i).get("workoutDate")));
+			service.workoutRecodeDelete(workout);
+		}
+	}
+	
 }

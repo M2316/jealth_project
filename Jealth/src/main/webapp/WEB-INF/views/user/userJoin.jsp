@@ -284,8 +284,10 @@ inputNick.onkeyup = function(){
 		nickFlag =true;
 	}
 }
-
-
+function datepicker_scroll_set(){
+	document.querySelector('.item-list').scrollTop = 500;
+}
+$('#datepicker-input').on('click',datepicker_scroll_set);
 
 
 

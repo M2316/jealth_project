@@ -22,7 +22,7 @@
 		SELECT 
 	    	e.*,b.workout_name,b.muscle_part FROM workout_recode e LEFT JOIN workout_list b ON e.user_id = b.user_id AND e.workout_no = b.workout_no 
 	    	WHERE e.user_id = #{userId} AND e.workout_date = #{selectedDate}
-	    	ORDER BY e.workout_no ASC,e.workout_recode_add_no ASC,e.workout_round_no ASC
+	    	ORDER BY e.workout_recode_add_no ASC,e.workout_no ASC,e.workout_round_no ASC
 	</select>	
 	
 	<select id="getWorkoutlist" resultMap="workoutMap">
@@ -48,4 +48,12 @@
 		DELETE FROM workout_list WHERE muscle_part = #{musclePart} AND user_id = #{userId} AND workout_no = #{workoutNo} AND workout_name = #{workoutName}
 	</delete>
 	
+	<insert id="workoutRecodeInsert">
+		INSERT INTO workout_recode values(#{workoutNo},#{workoutRecodeAddNo},#{userId},#{workoutRoundNo},#{workoutCount},#{workoutWeight},#{workoutDate})
+	</insert>
+	
+	
+	<delete id="workoutRecodeDelete">
+		DELETE FROM workout_recode WHERE user_id = #{userId} AND workout_no = #{workoutNo} AND workout_recode_add_no = #{workoutRecodeAddNo} AND workout_round_no = #{workoutRoundNo} AND workout_date = #{workoutDate}
+	</delete>
 </mapper>

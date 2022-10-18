@@ -313,8 +313,8 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
     function workout_recode_set_add(e){
         console.log('workout_recode_set_add 이벤트 실행') ;
         let set_count = e.target.parentElement.parentElement.parentElement.querySelectorAll('.workout_recode_wrap .workout-list-wrap').length;
+        const $dom = document.createElement('div');
         if(e.target.parentElement.parentElement.parentElement.querySelectorAll('.workout_recode_wrap .workout-list-wrap')[0] === undefined){
-            const $dom = document.createElement('div');
             $dom.classList.add('row','workout-list-wrap');
             $dom.innerHTML = 
             `<div class="col-6 workout_recode_box">
@@ -330,15 +330,18 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
             e.target.parentElement.parentElement.parentElement.querySelector('.workout_recode_wrap').append($dom);
             $('.workout_recode_count').off('click',workout_recode_count_open);
             $('.workout_recode_count').on('click',workout_recode_count_open);
-            return;
         }else{
-            const $dom = document.createElement('div');
             $dom.classList.add('row','workout-list-wrap');
             $dom.innerHTML = e.target.parentElement.parentElement.parentElement.querySelectorAll('.workout-list-wrap')[set_count-1].innerHTML;
             $dom.querySelector('#workout_recode_set_count').innerHTML = set_count+1;
             e.target.parentElement.parentElement.parentElement.querySelector('.workout_recode_wrap').append($dom);
             $('.workout_recode_count').off('click',workout_recode_count_open);
             $('.workout_recode_count').on('click',workout_recode_count_open);
+        }
+            
+            
+            let workoutListJSON = [];
+            
             
             let workoutNo = e.target.parentElement.parentElement.parentElement.querySelector('.workout-name').getAttribute('value');
             let workoutRecodeAddNo =  e.target.parentElement.parentElement.parentElement.getAttribute('recodecount');
@@ -348,35 +351,70 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
             
             
             let top_date = document.querySelector('.year-month').innerHTML;
+
             
-     /*        
-            let sel_year = top_date.substring(0,4);
-           	let sel_month = top_date.substring(6,8)*1 < 10 ? "0"+top_date.substring(6,8)*1 : top_date.substring(6,8)*1;
-           	let sel_date = top_date.substring(9,11)*1 < 10 ? "0"+top_date.substring(9,11)*1 : top_date.substring(9,11)*1;
-      */       
+           let workoutDate = (top_date.substring(0,4)) + (top_date.substring(6,8)*1 < 10 ? "0"+top_date.substring(6,8)*1 : top_date.substring(6,8)*1) + (top_date.substring(10,12)*1 < 10 ? "0"+top_date.substring(10,12)*1 : top_date.substring(10,12)*1);
+           let insert_workout = {
+           		"workoutNo":workoutNo,
+           		"workoutRecodeAddNo":workoutRecodeAddNo*1,
+           		"workoutRoundNo":workoutRoundNo*1,
+           		"workoutCount":workoutCount*1,
+           		"workoutWeight":workoutWeight*1,
+           		"workoutDate":workoutDate 
+           }
+           workoutListJSON[0] = insert_workout;
+           //JSON 데이터를 insert 하기위해 통신 시도
+	   		$.ajax({ // ajax 시작
+	      				type: 'post',
+	      				url: '<c:url value="/app/insertWorkoutRecode" />',
+	      				data: JSON.stringify(workoutListJSON), //폼 데이터 객체를 넘깁니다.
+	      				contentType: 'application/json', //ajax 방식에서 파일을 넘길 때는 반드시 false로 처리 -> "multipart/form-data"로 선언됨.
+	      				error: function(request, status, error) {
+	      					alert('서버와 통신 오류! 관리자에게 문의해 주세요~~!');
+	      				}
+	   		}); 
             
-            let workoutDate = (top_date.substring(0,4)) + (top_date.substring(6,8)*1 < 10 ? "0"+top_date.substring(6,8)*1 : top_date.substring(6,8)*1) + (top_date.substring(9,11)*1 < 10 ? "0"+top_date.substring(9,11)*1 : top_date.substring(9,11)*1);
-            const workoutRecodeData = {
-            		"workoutNo":workoutNo,
-            		"workout_recode_add_no":workoutRecodeAddNo,
-            		"workout_round_no":workoutRoundNo,
-            		"workout_count":workoutCount,
-            		"workout_weight":workoutWeight,
-            		"workout_date":workoutDate
-            }
             
-            
-            
-            return;
-        }
+        
     }
     
     //운동 세트 삭제
     //AJAX로 DELETE 처리 해줄것
     function workout_recode_set_del(e){
+        let workoutNo = e.target.parentElement.parentElement.parentElement.querySelector('.workout-name').getAttribute('value');
+        let workoutRecodeAddNo =  e.target.parentElement.parentElement.parentElement.getAttribute('recodecount');
+        let workoutRoundNo = e.target.parentElement.parentElement.parentElement.querySelectorAll('.workout-list-wrap').length;
+
+    	
         let set_count = e.target.parentElement.parentElement.parentElement.querySelectorAll('.workout_recode_wrap .workout-list-wrap').length;
         const $del = e.target.parentElement.parentElement.parentElement.querySelectorAll('.workout-list-wrap')[set_count-1];
         e.target.parentElement.parentElement.parentElement.querySelector('.workout_recode_wrap').removeChild($del);
+        let workoutListJSON = [];
+        
+        //DB에 workout_recode 삭제요청 보내는 코드
+
+        
+        
+        let top_date = document.querySelector('.year-month').innerHTML;
+
+        
+       let workoutDate = (top_date.substring(0,4)) + (top_date.substring(6,8)*1 < 10 ? "0"+top_date.substring(6,8)*1 : top_date.substring(6,8)*1) + (top_date.substring(10,12)*1 < 10 ? "0"+top_date.substring(10,12)*1 : top_date.substring(10,12)*1);
+       let delete_workout = {
+       		"workoutNo":workoutNo,
+       		"workoutRecodeAddNo":workoutRecodeAddNo*1,
+       		"workoutRoundNo":workoutRoundNo*1,
+       		"workoutDate":workoutDate 
+       }
+       workoutListJSON[0] = delete_workout;
+   		$.ajax({ // ajax 시작
+      				type: 'post',
+      				url: '<c:url value="/app/deleteWorkoutRecode" />',
+      				data: JSON.stringify(workoutListJSON), //폼 데이터 객체를 넘깁니다.
+      				contentType: 'application/json', //ajax 방식에서 파일을 넘길 때는 반드시 false로 처리 -> "multipart/form-data"로 선언됨.
+      				error: function(request, status, error) {
+      					alert('서버와 통신 오류! 관리자에게 문의해 주세요~~!');
+      				}
+   		});
         
     }
 
@@ -559,7 +597,8 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
         $('.workout_add_del_btn span[name="addBtn"]').on('click',function(e){
             console.log('addBtn 이벤트 실행')
             $mdom = document.createElement('div');
-            $mdom.setAttribute('name','new')
+            $mdom.setAttribute('name','new');
+            $mdom.setAttribute('value',document.querySelectorAll('.workout_title').length+1);
             $mdom.classList.add('workout_title','row');
             $mdom.innerHTML =
             `
@@ -697,12 +736,12 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
         	
         	//insert
         	if(document.querySelectorAll('.workout_title_box .workout_title[name="new"]').length !== 0){
-                //새로 입력된 운동 목록을 찾아서 insert해줌
+                //새로 입력된 운동 목록을 찾아서 insert해줌h
             	let $insertDom = document.querySelectorAll('.workout_title_box .workout_title[name="new"]');
             	for(let i=0; i<$insertDom.length; i++){
-            		const workoutNo = document.querySelectorAll('.workout_title[name="saved"]')[i].getAttribute('value');
-            		const name = document.querySelectorAll('.workout_title[name="new"] .col-9 span')[i].innerHTML;
-            		const musclePart = document.querySelectorAll('.workout_title[name="new"] .col-9 span')[i].parentElement.parentElement.parentElement.parentElement.querySelector('.workout_target_muscle_name span').innerHTML;
+            		const workoutNo = $insertDom[i].getAttribute('value');
+            		const name = $insertDom[i].querySelectorAll('.workout_title[name="new"] .col-9 span')[i].innerHTML;
+            		const musclePart = $insertDom[i].querySelectorAll('.workout_title[name="new"] .col-9 span')[i].parentElement.parentElement.parentElement.parentElement.querySelector('.workout_target_muscle_name span').innerHTML;
             		let newWorkout = {
             			'workoutNo':workoutNo,
             			'workoutName':name,
@@ -813,6 +852,10 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
     //선택된 운동 목록들을 recode에 등록
         //AJAX로 UPDATE처리 해주기~
     function  selected_workout_list_add_in_recode(){
+    	
+    	//JSON 배열로 묶어 controller로 전달된 객체 선언
+    	let workoutListJSON = [];
+    	
         const $checked_box = document.querySelectorAll('.workout_title input[type="checkbox"]'); //체크되어 있는 항목을 리스트로 가져옴
         let $checked_box_sorted = [];
         //체크된 순서대로 workout_list에 뿌져주어야 하기 때문에 data-add-order 속성으로 정렬 해주기
@@ -827,7 +870,7 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
         for(let i=0; i < $checked_box_sorted.length; i++){
            	let workout_name = document.querySelector('.workout_title input[type="checkbox"][data-add-order="'+i+'"]').parentElement.parentElement.querySelector('.col-9 span').innerHTML;
            	const $dom = document.createElement('div');
-           	const workoutNo = document.querySelectorAll('.workout_title')[i].getAttribute('value');
+           	const workoutNo = document.querySelector('.workout_title input[type="checkbox"][data-add-order="'+i+'"]').parentElement.parentElement.getAttribute('value');
            	$dom.classList.add('workout_recode_void');
            	$dom.innerHTML =
            		`
@@ -864,13 +907,31 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
             choose_count = 0;
             document.querySelector('.workout_list_footer_item span').innerHTML = '0';//0개 운동 추가 로 다시 바꿔줌
             //json배열 data로 만들어서 한번에 서버와 통신하기위한 작업 
-        	let insertWorkout = {
-        			'workout_no':1,
-        			'workout_recode_add_no':1,
-        			'user_id':1,
-        			'workout_round_no':1
-        			};
+            
+            let top_date = document.querySelector('.year-month').innerHTML;
+            
+            let workoutDate = (top_date.substring(0,4)) + (top_date.substring(6,8)*1 < 10 ? "0"+top_date.substring(6,8)*1 : top_date.substring(6,8)*1) + (top_date.substring(10,12)*1 < 10 ? "0"+top_date.substring(10,12)*1 : top_date.substring(10,12)*1);
+            const workout_length = document.querySelectorAll('.workout_recode_void').length;
+			let insert_workout = {
+        			'workoutNo':workoutNo, //workout_list 일렬번호
+        			'workoutRecodeAddNo':workout_length, // workout_recode 목록에 추가된 다음에 카운트 되기 때문에 workout_recode_void 길이로 계산이 가능하다|
+        			'workoutRoundNo':1, //셋트 번호
+        			'workoutCount':0, //반복 횟수
+        			'workoutWeight':0, //운동 무게
+        			'workoutDate':workoutDate //운동 날짜
+        			}; 
+            workoutListJSON[i] = insert_workout;
         }
+        //JSON 데이터를 insert 하기위해 통신 시도
+		$.ajax({ // ajax 시작
+   				type: 'post',
+   				url: '<c:url value="/app/insertWorkoutRecode" />',
+   				data: JSON.stringify(workoutListJSON), //폼 데이터 객체를 넘깁니다.
+   				contentType: 'application/json', //ajax 방식에서 파일을 넘길 때는 반드시 false로 처리 -> "multipart/form-data"로 선언됨.
+   				error: function(request, status, error) {
+   					alert('서버와 통신 오류! 관리자에게 문의해 주세요~~!');
+   				}
+		}); 
         //체크 했던 항목을 체크 해제 상태로 변경함
         display_toggle();
         //이미 기존에 표시되어있는 데이터는 이벤트가 걸려있기 때문에 기존 이벤트 삭제후에 다시 적용
@@ -917,7 +978,7 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
         
 		for(let i=0;i<jsonData.length;i++){
 			
-		let $workoutVoid = document.createElement('div');
+			let $workoutVoid = document.createElement('div');
 			
 			
 			if(jsonData[i].workoutRecodeAddNo === list_no){
