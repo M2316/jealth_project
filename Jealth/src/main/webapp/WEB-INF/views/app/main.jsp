@@ -234,9 +234,22 @@ let token = $("meta[name='_csrf']").attr('th:content');
 //더블클릭 무시
 document.body.addEventListener('dblclick',function(){
     return;
-})
+});
 
 click_calendar_date(document.querySelector('.today').parentElement.parentElement);
+
+
+//recode를 debouncing 하여 서버에 update 요청
+	  let timeout;
+function recode_debounce(callback, limit) {
+	if(timeout){
+		clearTimeout(timeout);
+	}
+	timeout = setTimeout(function (){
+		callback.apply();
+	},limit);
+	}
+
 
 //운동목록 input 모달창을 열어주는 이벤트
     function open_modal_event(e){
@@ -538,13 +551,68 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
         }
         let dataName = $a.parentElement.parentElement.parentElement.querySelector('.recode_weight div').dataset.name
         if(dataName === 'weight'){
-            $target.querySelectorAll('.workout_recode_count .workout_recode')[0].innerHTML = $a.value;
+        	$target.querySelectorAll('.workout_recode_count .workout_recode')[0].innerHTML = $a.value
+        	recode_debounce(function(){
+        		//ajax 로 update요청하면 됨
+        		let top_date = document.querySelector('.year-month').innerHTML;
+        		let workoutNo = document.querySelector('.selected_element').parentElement.parentElement.querySelector('.workout-name').getAttribute('value');
+                let workoutRoundNo = document.querySelectorAll('.selected_element .workout_recode')[0].innerHTML;
+        		let workoutDate = (top_date.substring(0,4)) + (top_date.substring(6,8)*1 < 10 ? "0"+top_date.substring(6,8)*1 : top_date.substring(6,8)*1) + (top_date.substring(10,12)*1 < 10 ? "0"+top_date.substring(10,12)*1 : top_date.substring(10,12)*1);
+        		let workoutWeight = document.querySelectorAll('.selected_element .workout_recode')[1].innerHTML;
+        		let workoutCount = document.querySelectorAll('.selected_element .workout_recode')[2].innerHTML;
+        		let workoutRecodeAddNo = document.querySelector('.selected_element').parentElement.parentElement.getAttribute('recodecount');
+        		let workoutListJSON = [{
+       	       		"workoutNo":workoutNo*1,
+       	       		"workoutRoundNo":workoutRoundNo*1,
+       	       		"workoutDate":workoutDate*1,
+       	       		"workoutWeight":workoutWeight*1,
+       	       		"workoutCount":workoutCount*1,
+       	       		"workoutRecodeAddNo":workoutRecodeAddNo*1
+        		}];
+           		$.ajax({ // ajax 시작
+      				type: 'post',
+      				url: '<c:url value="/app/updateWorkoutRecode" />',
+      				data: JSON.stringify(workoutListJSON), //폼 데이터 객체를 넘깁니다.
+      				contentType: 'application/json', //ajax 방식에서 파일을 넘길 때는 반드시 false로 처리 -> "multipart/form-data"로 선언됨.
+      				error: function(request, status, error) {
+      					alert('서버와 통신 오류! 관리자에게 문의해 주세요~~!');
+      				}
+   				});
+        	},250);
+			//$target.querySelectorAll('.workout_recode_count .workout_recode')[0].innerHTML = $a.value
         }else if(dataName === 'count'){
-            $target.querySelectorAll('.workout_recode_count .workout_recode')[1].innerHTML = $a.value;
+        	$target.querySelectorAll('.workout_recode_count .workout_recode')[1].innerHTML = $a.value
+        	recode_debounce(function(){
+        		//ajax 로 update요청하면 됨
+        		let top_date = document.querySelector('.year-month').innerHTML;
+        		let workoutNo = document.querySelector('.selected_element').parentElement.parentElement.querySelector('.workout-name').getAttribute('value');
+                let workoutRoundNo = document.querySelectorAll('.selected_element .workout_recode')[0].innerHTML;
+        		let workoutDate = (top_date.substring(0,4)) + (top_date.substring(6,8)*1 < 10 ? "0"+top_date.substring(6,8)*1 : top_date.substring(6,8)*1) + (top_date.substring(10,12)*1 < 10 ? "0"+top_date.substring(10,12)*1 : top_date.substring(10,12)*1);
+        		let workoutWeight = document.querySelectorAll('.selected_element .workout_recode')[1].innerHTML;
+        		let workoutCount = document.querySelectorAll('.selected_element .workout_recode')[2].innerHTML;
+        		let workoutRecodeAddNo = document.querySelector('.selected_element').parentElement.parentElement.getAttribute('recodecount');
+        		let workoutListJSON = [{
+       	       		"workoutNo":workoutNo*1,
+       	       		"workoutRoundNo":workoutRoundNo*1,
+       	       		"workoutDate":workoutDate*1,
+       	       		"workoutWeight":workoutWeight*1,
+       	       		"workoutCount":workoutCount*1,
+       	       		"workoutRecodeAddNo":workoutRecodeAddNo*1
+        		}];
+           		$.ajax({ // ajax 시작
+      				type: 'post',
+      				url: '<c:url value="/app/updateWorkoutRecode" />',
+      				data: JSON.stringify(workoutListJSON), //폼 데이터 객체를 넘깁니다.
+      				contentType: 'application/json', //ajax 방식에서 파일을 넘길 때는 반드시 false로 처리 -> "multipart/form-data"로 선언됨.
+      				error: function(request, status, error) {
+      					alert('서버와 통신 오류! 관리자에게 문의해 주세요~~!');
+      				}
+   				});
+        	},250);
         }else{return;}
-
     }
     
+ 
 ////////////////////////////////////////////////////////////
 //////////recode를 선택해서 횟수, 중량 입력 기능/////////////
 ////////////////////////////////////////////////////////////    
@@ -981,7 +1049,7 @@ click_calendar_date(document.querySelector('.today').parentElement.parentElement
 			let $workoutVoid = document.createElement('div');
 			
 			
-			if(jsonData[i].workoutRecodeAddNo === list_no){
+			if(jsonData[i].workoutRecodeAddNo === (list_no-1)){
                 $workoutVoid.classList.add('workout_recode_void');
                 $workoutVoid.setAttribute('recodeCount',jsonData[i].workoutRecodeAddNo);
                 $workoutVoid.innerHTML += `

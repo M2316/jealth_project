@@ -43,6 +43,7 @@
 	<update id="workoutListUpdate">
 		UPDATE workout_list SET workout_name = #{workoutName} WHERE user_id = #{userId} AND workout_no = #{workoutNo}
 	</update>
+
 	
 	<delete id="workoutListDelete">
 		DELETE FROM workout_list WHERE muscle_part = #{musclePart} AND user_id = #{userId} AND workout_no = #{workoutNo} AND workout_name = #{workoutName}
@@ -56,4 +57,8 @@
 	<delete id="workoutRecodeDelete">
 		DELETE FROM workout_recode WHERE user_id = #{userId} AND workout_no = #{workoutNo} AND workout_recode_add_no = #{workoutRecodeAddNo} AND workout_round_no = #{workoutRoundNo} AND workout_date = #{workoutDate}
 	</delete>
+	
+	<update id="workoutRecodeUpdate">
+		UPDATE workout_recode SET  workout_weight=#{workoutWeight}, workout_count=#{workoutCount} WHERE user_id=#{userId} AND workout_date=#{workoutDate} AND workout_round_no=#{workoutRoundNo} And workout_recode_add_no=#{workoutRecodeAddNo}
+	</update>
 </mapper>

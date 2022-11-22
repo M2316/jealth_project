@@ -55,4 +55,10 @@ public class WorkoutService implements IWorkoutService {
 		mapper.workoutRecodeDelete(workout);
 		
 	}
+	@Override
+	public void workoutRecodeUpdate(WorkoutVO workout) {
+		mapper.workoutRecodeUpdate(workout);
+		
+	}
+	
 }

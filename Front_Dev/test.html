@@ -1,4 +1,37 @@
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" name="searchBar" id="search">
+    
+</body>
+<script>
+  let timer;
+const searchBar = document.querySelector("#search");
+searchBar.addEventListener('input', function(e){
+    if(timer){
+        clearTimeout(timer);
+    }
+
+    timer = setTimeout(function(){
+        console.log(e);
+    },1000);
+});
+
+
+
+</script>
+</html>
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,15 +48,7 @@
 </html>
 
 <script>
-function debounce(callback, limit = 100) {
-  let timeout;
-  return function (...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      callback.apply(this, args);
-    }, limit);
-  };
-}
+
 
 
 // 이벤트 할당
@@ -39,4 +64,17 @@ function addcount() {
 $('#input-debounce').on('click',debounce(addcount, 1000));
 
 
-</script>
+
+
+
+
+function debounce(callback, limit = 100) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      callback.apply();
+    }, limit);
+  };
+}
+</script> -->

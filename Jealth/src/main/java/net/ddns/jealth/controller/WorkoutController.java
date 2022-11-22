@@ -189,4 +189,29 @@ public class WorkoutController {
 		}
 	}
 	
+	@ResponseBody
+	@PostMapping("/updateWorkoutRecode")
+	public void updateWorkoutRecode(@RequestBody String updateWorkoutRecode,HttpServletRequest request) {
+		System.out.println("WorkoutController/updateWorkoutRecode  실행 : "+updateWorkoutRecode);
+		
+		OtherCustomMethods ocm = new OtherCustomMethods();
+		HttpSession session = request.getSession();
+		String userId = ((UserVO)session.getAttribute("userInfo")).getUserId();
+		System.out.println("userID : "+userId);
+		System.out.println("업데이트 실행~");
+		ArrayList<Map<String, Object>>  newWorkoutListArr = ocm.getStringToHashMap(updateWorkoutRecode);
+		System.out.println(newWorkoutListArr);
+		for(int i=0; i<newWorkoutListArr.size(); i++) {
+			
+			WorkoutVO workout = new WorkoutVO();
+			workout.setUserId(userId);
+			workout.setWorkoutWeight((Integer)newWorkoutListArr.get(i).get("workoutWeight"));
+			workout.setWorkoutCount((Integer)newWorkoutListArr.get(i).get("workoutCount"));
+			workout.setWorkoutDate((Integer)newWorkoutListArr.get(i).get("workoutDate"));
+			workout.setWorkoutRoundNo((Integer)newWorkoutListArr.get(i).get("workoutRoundNo"));
+			workout.setWorkoutRecodeAddNo((Integer)newWorkoutListArr.get(i).get("workoutRecodeAddNo"));
+			workout.setWorkoutNo((Integer)newWorkoutListArr.get(i).get("workoutNo"));
+			service.workoutRecodeUpdate(workout);
+		}
+	}
 }

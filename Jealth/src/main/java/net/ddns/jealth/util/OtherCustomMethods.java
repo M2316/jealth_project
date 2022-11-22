@@ -23,7 +23,7 @@ public class OtherCustomMethods {
 		        arr.add(i,str.substring(str.indexOf("{"),str.indexOf("}")+1)); //미리 언선되어있는 배열에 짜른 데이터를 추가
 		        str = str.substring(str.indexOf("}",0)+2,str.length()); //배열에 데이터를 넣을 때 마다 기존 String에서는 삭제 작업이 이루어짐
 		    }
-		}	
+		}
 		return arr;
 	}
 	
@@ -45,6 +45,7 @@ public class OtherCustomMethods {
 	public ArrayList<Map<String, Object>> getStringToHashMap(String str){
 		ArrayList<String> arr = getStringToJsonlist(str);
 		ArrayList<Map<String, Object>> arrMap = getArrayListToMap(arr);
+		
 		return arrMap;
 	}
 }

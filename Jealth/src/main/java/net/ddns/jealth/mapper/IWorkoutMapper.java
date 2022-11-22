@@ -29,4 +29,7 @@ public interface IWorkoutMapper {
 	
 	//운동 기록 삭제 요청
 	void workoutRecodeDelete(WorkoutVO workout);
+	
+	//운동 기록 업데이트 요청
+	void workoutRecodeUpdate(WorkoutVO workout);
 }
